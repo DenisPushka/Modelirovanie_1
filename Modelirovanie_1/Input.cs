@@ -204,7 +204,7 @@ namespace Modelirovanie_1
             Close();
         }
 
-        private void button_close_Click(object sender, EventArgs e) => button_ok_Click(sender,e);
+        private void button_close_Click(object sender, EventArgs e) => Close();
 
         #region Move
 

@@ -98,6 +98,7 @@ namespace Modelirovanie_1
                 {
                     case '(':
                         stack.Push(element);
+                        _stackShow.Push(element);
                         break;
                     case ')':
                         Pop(stack, queue, element);
@@ -105,6 +106,7 @@ namespace Modelirovanie_1
                         if (index + 1 < _workString.Length && _workString[index + 1] == 'д')
                         {
                             stack.Push(_workString[++index]);
+                            _stackShow.Push(_workString[index]);
                             _liveIndex++;
                         }
 
@@ -130,23 +132,29 @@ namespace Modelirovanie_1
                                  _dictionaryForFunction.ContainsValue(stack.Peek())))
                                 Pop(stack, queue, element);
                             stack.Push(element);
+                            _stackShow.Push(element);
                             break;
                         }
                         case '+':
                         case '-':
                         {
                             if (stack.Count == 0 || stack.Peek() == '(')
+                            {
                                 stack.Push(element);
+                                _stackShow.Push(element);
+                            }
                             else if (stack.Peek() == '/' || stack.Peek() == '*' ||
                                      _dictionaryForFunction.ContainsValue(stack.Peek()))
                             {
                                 Pop(stack, queue, element);
                                 stack.Push(element);
+                                _stackShow.Push(element);
                             }
                             else
                             {
                                 queue.Enqueue(stack.Pop());
                                 stack.Push(element);
+                                _stackShow.Push(element);
                             }
 
                             break;
@@ -198,6 +206,7 @@ namespace Modelirovanie_1
                 _liveQueue.Clear();
                 _liveStack.Clear();
                 _end = false;
+                label_stack.Text = "";
             }
 
             return result;
@@ -210,7 +219,10 @@ namespace Modelirovanie_1
                 if (stack.Peek() == '(')
                 {
                     if (element == ')' && (element != '-' || element != '+'))
+                    {
                         stack.Pop();
+                    }
+
                     return;
                 }
 
@@ -220,9 +232,6 @@ namespace Modelirovanie_1
                     return;
 
                 queue.Enqueue(stack.Pop());
-
-                // if (_mode)
-                //     await Task.Delay(MilliSeconds);
             }
         }
 
@@ -279,12 +288,17 @@ namespace Modelirovanie_1
             return result.ToString();
         }
 
+        private readonly Stack<char> _stackShow = new Stack<char>();
+
         private void ShowStack(Stack<char> stack)
         {
             label_stack.Text = "";
-            foreach (var c in stack)
+            foreach (var c in _stackShow)
             {
-                label_stack.Text = label_stack.Text + "\n" + c;
+                if (stack.Count!= 0 && c == stack.Peek())
+                    label_stack.Text += c + "\t <-- \n";
+                else
+                    label_stack.Text += c + "\n";
             }
         }
 

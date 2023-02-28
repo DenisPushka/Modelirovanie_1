@@ -55,9 +55,6 @@ namespace Modelirovanie_1
             this.number_arcsin = new System.Windows.Forms.Button();
             this.number_asrccos = new System.Windows.Forms.Button();
             this.number_stepen = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
             this.button_ok = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.textBox_input = new System.Windows.Forms.TextBox();
@@ -303,33 +300,6 @@ namespace Modelirovanie_1
             this.number_stepen.UseVisualStyleBackColor = true;
             this.number_stepen.Click += new System.EventHandler(this.number_degree_Click);
             // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(510, 140);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(75, 23);
-            this.button25.TabIndex = 25;
-            this.button25.Text = "button25";
-            this.button25.UseVisualStyleBackColor = true;
-            // 
-            // button26
-            // 
-            this.button26.Location = new System.Drawing.Point(510, 169);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(75, 23);
-            this.button26.TabIndex = 26;
-            this.button26.Text = "button26";
-            this.button26.UseVisualStyleBackColor = true;
-            // 
-            // button27
-            // 
-            this.button27.Location = new System.Drawing.Point(510, 198);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(75, 23);
-            this.button27.TabIndex = 27;
-            this.button27.Text = "button27";
-            this.button27.UseVisualStyleBackColor = true;
-            // 
             // button_ok
             // 
             this.button_ok.Location = new System.Drawing.Point(12, 236);
@@ -365,9 +335,6 @@ namespace Modelirovanie_1
             this.Controls.Add(this.textBox_input);
             this.Controls.Add(this.button_close);
             this.Controls.Add(this.button_ok);
-            this.Controls.Add(this.button27);
-            this.Controls.Add(this.button26);
-            this.Controls.Add(this.button25);
             this.Controls.Add(this.number_stepen);
             this.Controls.Add(this.number_asrccos);
             this.Controls.Add(this.number_arcsin);
@@ -439,9 +406,6 @@ namespace Modelirovanie_1
         private System.Windows.Forms.Button number_arcsin;
         private System.Windows.Forms.Button number_asrccos;
         private System.Windows.Forms.Button number_stepen;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button27;
 
         private System.Windows.Forms.Button buttom_move_left;
         private System.Windows.Forms.Button buttom_move_right;
