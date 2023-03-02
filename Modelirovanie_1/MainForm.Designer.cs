@@ -39,7 +39,7 @@ namespace Modelirovanie_1
             this.label_input = new System.Windows.Forms.Label();
             this.label_postfix_symbol = new System.Windows.Forms.Label();
             this.buttonTact = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_start = new System.Windows.Forms.Button();
             this.label_stack = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -153,24 +153,24 @@ namespace Modelirovanie_1
             this.buttonTact.UseVisualStyleBackColor = true;
             this.buttonTact.Click += new System.EventHandler(this.button_Tact);
             // 
-            // button3
+            // button_start
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(1226, 700);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 76);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Старт";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button_Start);
+            this.button_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_start.Location = new System.Drawing.Point(1226, 700);
+            this.button_start.Name = "button_start";
+            this.button_start.Size = new System.Drawing.Size(150, 76);
+            this.button_start.TabIndex = 11;
+            this.button_start.Text = "Старт";
+            this.button_start.UseVisualStyleBackColor = true;
+            this.button_start.Click += new System.EventHandler(this.button_Start);
             // 
             // label_stack
             // 
             this.label_stack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_stack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_stack.Location = new System.Drawing.Point(50, 204);
+            this.label_stack.Location = new System.Drawing.Point(73, 202);
             this.label_stack.Name = "label_stack";
-            this.label_stack.Size = new System.Drawing.Size(168, 477);
+            this.label_stack.Size = new System.Drawing.Size(124, 478);
             this.label_stack.TabIndex = 13;
             this.label_stack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -183,7 +183,6 @@ namespace Modelirovanie_1
             this.label4.TabIndex = 14;
             this.label4.Text = "Исходная строка (динамическая)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label6
             // 
@@ -213,7 +212,7 @@ namespace Modelirovanie_1
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label_stack);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button_start);
             this.Controls.Add(this.buttonTact);
             this.Controls.Add(this.label_postfix_symbol);
             this.Controls.Add(this.label_input);
@@ -226,7 +225,6 @@ namespace Modelirovanie_1
             this.Controls.Add(this.but_input);
             this.Name = "MainForm";
             this.Text = "Мультимедийная обучающая программа \"Трансляция алгeбраических выражений\"";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
         }
 
@@ -239,7 +237,7 @@ namespace Modelirovanie_1
         private System.Windows.Forms.Button but_input;
 
         private System.Windows.Forms.Button buttonTact;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_start;
 
         private System.Windows.Forms.Label label_postfix_symbol;
 
@@ -253,7 +251,6 @@ namespace Modelirovanie_1
 
         private System.Windows.Forms.Label label4;
 
-        private System.Windows.Forms.Button Задать;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

@@ -13,8 +13,8 @@ namespace Modelirovanie_1
         private string _inputStr;
         private readonly Dictionary<string, char> _dictionaryForFunction;
         private const string Str = "$+-*/^()FP";
-        private const int MilliSecond = 1000; 
-
+        private const int MilliSecond = 1000;
+        private Label _indicator;
         private readonly byte[,] _arrayBytes =
         {
             { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
@@ -41,11 +41,17 @@ namespace Modelirovanie_1
                 { "^", 'д' }
             };
             ShowTable();
+            _indicator = new Label();
+            _indicator.Text = "←";
+            _indicator.Size = new Size(250, 230);
+            _indicator.Location = new Point(210, 680);
+            _indicator.Font = new Font("Microsoft Sans Serif", 20);
+            Controls.Add(_indicator);
         }
 
         private void ShowTable()
         {
-            const int size = 30;
+            const int size = 35;
             const int width = 550;
             const int height = 350;
             var s = 0;
@@ -56,8 +62,11 @@ namespace Modelirovanie_1
                     {
                         var l = new Label();
                         l.Text = Str[index].ToString();
+                        l.BorderStyle = BorderStyle.Fixed3D;
                         l.Location = new Point(index * size + width, height - size);
                         l.Size = new Size(size, size);
+                        l.TextAlign = ContentAlignment.MiddleCenter;
+                        l.Font = new Font("Microsoft Sans Serif", 18);
                         Controls.Add(l);
                     }
 
@@ -70,8 +79,11 @@ namespace Modelirovanie_1
                         {
                             var label = new Label();
                             label.Text = Str[x].ToString();
-                            label.Location = new Point(width - 30, x * size + height + s);
+                            label.Location = new Point(width - size, x * size + height + s);
                             label.Size = new Size(size, size);
+                            label.BorderStyle = BorderStyle.Fixed3D;
+                            label.TextAlign = ContentAlignment.MiddleCenter;
+                            label.Font = new Font("Microsoft Sans Serif", 18);
                             Controls.Add(label);
                         }
 
@@ -79,14 +91,12 @@ namespace Modelirovanie_1
                     l.Text = _arrayBytes[y, x].ToString();
                     l.Location = new Point(x * size + width, y * size + height);
                     l.Size = new Size(size, size);
-
+                    l.BorderStyle = BorderStyle.FixedSingle;
+                    l.TextAlign = ContentAlignment.MiddleCenter;
+                    l.Font = new Font("Microsoft Sans Serif", 18);
                     Controls.Add(l);
                 }
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
 
         private void label_input_main(object sender, EventArgs e)
@@ -306,12 +316,13 @@ namespace Modelirovanie_1
 
         private readonly Stack<char> _stackShow = new Stack<char>();
 
-        private void ShowStack(Stack<char> stack, List<bool> isLife)
+        private void ShowStack(Stack<char> stack, IReadOnlyList<bool> isLife)
         {
             if (stack.Count == 0) return;
             label_stack.Text = "";
             var index = 0;
             var branch = false;
+
             foreach (var c in _stackShow)
             {
                 if (c == '(')
@@ -328,6 +339,7 @@ namespace Modelirovanie_1
                     label_stack.Text += c + "\t <-- \n";
                 else
                     label_stack.Text += c + "\n";
+                label_stack.Font = new Font("Microsoft Sans Serif", 20);
 
                 index++;
             }
@@ -360,7 +372,7 @@ namespace Modelirovanie_1
         {
             var result = new StringBuilder();
             var index = 0;
-            
+
             while (index < workString.Length)
             {
                 if (char.IsLower(workString[index]) || workString[index] == '^')
@@ -396,7 +408,7 @@ namespace Modelirovanie_1
 
             return result.ToString();
         }
-        
+
         // private void ShowChangeOut(Queue<char> queue)
         // {
         //     label_postfix_number.Text = "";
@@ -417,17 +429,12 @@ namespace Modelirovanie_1
         // }
 
         private async void button_Start(object sender, EventArgs e) =>
-            await TranslateToPostfix(_inputStr/*"A+B-C*sin(E)+arcsin(C)"*/);
+            await TranslateToPostfix(_inputStr /*"A+B-C*sin(E)+arcsin(C)"*/);
 
         private void radioButton_Auto(object sender, EventArgs e) => _mode = false;
 
         private void radioButton_Step(object sender, EventArgs e) => _mode = true;
 
         private async void button_Tact(object sender, EventArgs e) => await TranslateToPostfix(_inputStr);
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
