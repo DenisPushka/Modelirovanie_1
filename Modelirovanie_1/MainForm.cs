@@ -13,6 +13,8 @@ namespace Modelirovanie_1
         private string _inputStr;
         private readonly Dictionary<string, char> _dictionaryForFunction;
         private const string Str = "$+-*/^()FP";
+        private const int MilliSecond = 1000; 
+
         private readonly byte[,] _arrayBytes =
         {
             { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
@@ -110,12 +112,10 @@ namespace Modelirovanie_1
 
         private readonly Stack<char> _liveStack = new Stack<char>();
         private readonly Queue<char> _liveQueue = new Queue<char>();
-
         private int _liveIndex;
-
-        // private bool _isFirst = true;
         private string _workString;
         private bool _end;
+        private bool _isFirst = true;
         private readonly List<bool> _isLife = new List<bool>();
 
         // Перевод из инфиксной формы в постфиксную
@@ -133,11 +133,12 @@ namespace Modelirovanie_1
                 queue = _liveQueue;
                 index = _liveIndex;
                 isLife = _isLife;
-                /*if (_isFirst)
+
+                if (_isFirst)
                 {
                     _workString = Translate(input);
                     _isFirst = false;
-                }*/
+                }
             }
             else
             {
@@ -145,8 +146,7 @@ namespace Modelirovanie_1
                 queue = new Queue<char>();
                 isLife = new List<bool>();
                 index = 0;
-
-                // _workString = Translate(input);
+                _workString = Translate(input);
             }
 
             while (_workString.Length != index)
@@ -217,7 +217,7 @@ namespace Modelirovanie_1
                             else
                             {
                                 queue.Enqueue(stack.Pop());
-                                isLife[_isLife.Count - 1] = false;
+                                isLife[isLife.Count - 1] = false;
                                 stack.Push(element);
                                 _stackShow.Push(element);
                                 isLife.Add(true);
@@ -227,10 +227,9 @@ namespace Modelirovanie_1
                         }
                     }
 
-                ShowStack(stack);
+                ShowStack(stack, isLife);
                 ShowChangeInputStr(index, _workString);
                 ShowQueue(queue);
-                // ShowChangeOut(queue);
                 if (_mode)
                 {
                     _liveIndex++;
@@ -238,23 +237,25 @@ namespace Modelirovanie_1
                 }
 
                 index++;
-                await Task.Delay(700);
+                await Task.Delay(MilliSecond);
             }
 
             if (_workString.Length <= index)
             {
-                ShowStack(stack);
-                await Task.Delay(700);
+                ShowStack(stack, isLife);
+                ShowQueue(queue);
+                await Task.Delay(MilliSecond);
                 if (stack.Count != 0)
-                    for (var i = 0; i < stack.Count; i++)
+                    for (var i = 0; stack.Count != 0; i++)
                     {
                         if (stack.Peek() != '(')
                             queue.Enqueue(stack.Pop());
                         else
                             stack.Pop();
-                        isLife[_isLife.Count - 1 - i] = false;
-                        ShowStack(stack);
-                        await Task.Delay(700);
+                        isLife[isLife.Count - 1 - i] = false;
+                        ShowStack(stack, isLife);
+                        ShowQueue(queue);
+                        await Task.Delay(MilliSecond);
                         if (_mode)
                             break;
                     }
@@ -265,13 +266,8 @@ namespace Modelirovanie_1
             // Выход в буквах
             var result = ShowQueue(queue);
 
-            // Выход в цифрах
-            // ShowChangeOut(queue);
-
             if (_workString.Length <= index && _end)
             {
-                // _isFirst = true;
-                // _dictionaryForNumber.Clear();
                 _liveIndex = 0;
                 _liveQueue.Clear();
                 _liveStack.Clear();
@@ -308,62 +304,9 @@ namespace Modelirovanie_1
             }
         }
 
-        // Перевод из цифр и формул в буквы
-        // private string Translate(string workString)
-        // {
-        //     var ch = 'A';
-        //     var index = 0;
-        //     var result = new StringBuilder();
-        //
-        //     while (index != workString.Length)
-        //     {
-        //         if (char.IsDigit(workString[index]))
-        //         {
-        //             var buffer = new StringBuilder().Append(workString[index]);
-        //             while (++index != workString.Length && char.IsDigit(workString[index]))
-        //                 buffer.Append(workString[index]);
-        //             _dictionaryForNumber.Add(ch, buffer.ToString());
-        //             result.Append(ch);
-        //             ch++;
-        //         }
-        //         else if (char.IsLetter(workString[index]) || workString[index] == '^')
-        //         {
-        //             var c = ' ';
-        //             switch (workString[index])
-        //             {
-        //                 case 's':
-        //                     c = _dictionaryForFunction[workString.Substring(index, 3)];
-        //                     break;
-        //                 case 'c':
-        //                     c = _dictionaryForFunction[workString.Substring(index, 3)];
-        //                     break;
-        //                 // arc sin && arc cos
-        //                 case 'a':
-        //                     c = _dictionaryForFunction[workString.Substring(index, 6)];
-        //                     index += 3;
-        //                     break;
-        //                 case '^':
-        //                     c = _dictionaryForFunction[workString.Substring(index, 1)];
-        //                     index -= 2;
-        //                     break;
-        //             }
-        //
-        //             index += 3;
-        //             result.Append(c);
-        //         }
-        //         else
-        //         {
-        //             result.Append(workString[index]);
-        //             index++;
-        //         }
-        //     }
-        //
-        //     return result.ToString();
-        // }
-
         private readonly Stack<char> _stackShow = new Stack<char>();
 
-        private void ShowStack(Stack<char> stack)
+        private void ShowStack(Stack<char> stack, List<bool> isLife)
         {
             if (stack.Count == 0) return;
             label_stack.Text = "";
@@ -381,7 +324,7 @@ namespace Modelirovanie_1
                     else
                         label_stack.Text += '(' + "\n";
                 }
-                else if (stack.Count != 0 && c == stack.Peek() && _isLife[_isLife.Count - 1 - index])
+                else if (stack.Count != 0 && c == stack.Peek() && isLife[isLife.Count - 1 - index])
                     label_stack.Text += c + "\t <-- \n";
                 else
                     label_stack.Text += c + "\n";
@@ -404,25 +347,56 @@ namespace Modelirovanie_1
         {
             label_input_change.Text = "";
             for (var i = index + 1; i < workStr.Length; i++)
-            {
                 if (_dictionaryForFunction.ContainsValue(workStr[i]))
                 {
                     foreach (var c in _dictionaryForFunction.Where(c => c.Value == _workString[i]))
-                    {
                         label_input_change.Text += c.Key;
-                    }
                 }
-                // else if (_dictionaryForNumber.ContainsKey(workStr[i]))
-                // {
-                //     label_input_change.Text += _dictionaryForNumber[workStr[i]];
-                // }
                 else
-                {
                     label_input_change.Text += workStr[i];
-                }
-            }
         }
 
+        private string Translate(string workString)
+        {
+            var result = new StringBuilder();
+            var index = 0;
+            
+            while (index < workString.Length)
+            {
+                if (char.IsLower(workString[index]) || workString[index] == '^')
+                {
+                    var c = ' ';
+                    switch (workString[index])
+                    {
+                        case 's':
+                            c = _dictionaryForFunction[workString.Substring(index, 3)];
+                            break;
+                        case 'c':
+                            c = _dictionaryForFunction[workString.Substring(index, 3)];
+                            break;
+                        // arc sin && arc cos
+                        case 'a':
+                            c = _dictionaryForFunction[workString.Substring(index, 6)];
+                            index += 3;
+                            break;
+                        case '^':
+                            c = _dictionaryForFunction[workString.Substring(index, 1)];
+                            index -= 2;
+                            break;
+                    }
+
+                    index += 2;
+                    result.Append(c);
+                }
+                else
+                    result.Append(workString[index]);
+
+                index++;
+            }
+
+            return result.ToString();
+        }
+        
         // private void ShowChangeOut(Queue<char> queue)
         // {
         //     label_postfix_number.Text = "";
@@ -442,20 +416,14 @@ namespace Modelirovanie_1
         //     }
         // }
 
-        private async void button_Start(object sender, EventArgs e)
-        {
-            // _dictionaryForNumber.Clear();
-            await TranslateToPostfix(_inputStr);
-        }
+        private async void button_Start(object sender, EventArgs e) =>
+            await TranslateToPostfix(_inputStr/*"A+B-C*sin(E)+arcsin(C)"*/);
 
         private void radioButton_Auto(object sender, EventArgs e) => _mode = false;
 
         private void radioButton_Step(object sender, EventArgs e) => _mode = true;
 
-        private async void button_Tact(object sender, EventArgs e)
-        {
-            await TranslateToPostfix(_inputStr);
-        }
+        private async void button_Tact(object sender, EventArgs e) => await TranslateToPostfix(_inputStr);
 
         private void label4_Click(object sender, EventArgs e)
         {

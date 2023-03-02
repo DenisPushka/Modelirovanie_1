@@ -30,172 +30,43 @@ namespace Modelirovanie_1
             textBox_input.SelectionStart = ++_index;
             textBox_input.Focus();
         }
-
-        #region Symbol
-
-        private void number_1_Click(object sender, EventArgs e)
+        
+        private void Input_Load(object sender, EventArgs e)
         {
-            InputStr.Insert(_index, '1');
-            Show();
+            AddButton(groupBox1);
+            AddButton(groupBox2);
+        }
+        
+        private void AddButton(Control groupBox)
+        {
+            foreach (var item in groupBox.Controls)
+            {
+                if (item is Button button) // проверяем, что это кнопка
+                {
+                    button.Click += CommonBtn_Click; // устанавливаем обработчик события  
+                }
+            }
         }
 
-        private void number_2_Click(object sender, EventArgs e)
+        private void CommonBtn_Click(object sender, EventArgs e)
         {
-            InputStr.Insert(_index, '2');
+            var msg = ((Button)sender).Text;
+            if (msg.Length > 1)
+            {
+                foreach (var c in msg) 
+                    InputStr.Insert(_index++, c);
+                InputStr.Insert(_index++, '(');
+                InputStr.Insert(_index, ')');
+                _index--;
+            }
+            else
+                InputStr.Insert(_index, msg[0]);
+
             Show();
+
         }
 
-        private void number_3_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '3');
-            Show();
-        }
-
-        private void number_4_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '4');
-            Show();
-        }
-
-        private void number_5_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '5');
-            Show();
-        }
-
-        private void number_6_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '6');
-            Show();
-        }
-
-        private void number_7_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '7');
-            Show();
-        }
-
-        private void number_8_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '8');
-            Show();
-        }
-
-        private void number_9_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '9');
-            Show();
-        }
-
-        private void number_0_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '0');
-            Show();
-        }
-
-        private void number_left_bracket_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '(');
-            Show();
-        }
-
-        private void number_right_bracket_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, ')');
-            Show();
-        }
-
-        #endregion
-
-        #region Operation
-
-        private void number_plus_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '+');
-            Show();
-        }
-
-        private void number_minus_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '-');
-            Show();
-        }
-
-        private void number_multiplication_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '*');
-            Show();
-        }
-
-        private void number_division_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '/');
-            Show();
-        }
-
-        #endregion
-
-        #region Function
-
-        private void number_sin_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index++, 's');
-            InputStr.Insert(_index++, 'i');
-            InputStr.Insert(_index++, 'n');
-            InputStr.Insert(_index++, '(');
-            InputStr.Insert(_index, ')');
-            _index--;
-            Show();
-        }
-
-        private void number_cos_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index++, 'c');
-            InputStr.Insert(_index++, 'o');
-            InputStr.Insert(_index++, 's');
-            InputStr.Insert(_index++, '(');
-            InputStr.Insert(_index, ')');
-            _index--;
-            Show();
-        }
-
-        private void number_arc_sin_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index++, 'a');
-            InputStr.Insert(_index++, 'r');
-            InputStr.Insert(_index++, 'c');
-            InputStr.Insert(_index++, 's');
-            InputStr.Insert(_index++, 'i');
-            InputStr.Insert(_index++, 'n');
-            InputStr.Insert(_index++, '(');
-            InputStr.Insert(_index, ')');
-            _index--;
-            Show();
-        }
-
-        private void number_arc_cos_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index++, 'a');
-            InputStr.Insert(_index++, 'r');
-            InputStr.Insert(_index++, 'c');
-            InputStr.Insert(_index++, 'c');
-            InputStr.Insert(_index++, 'o');
-            InputStr.Insert(_index++, 's');
-            InputStr.Insert(_index++, '(');
-            InputStr.Insert(_index, ')');
-            _index--;
-            Show();
-        }
-
-        private void number_degree_Click(object sender, EventArgs e)
-        {
-            InputStr.Insert(_index, '^');
-            Show();
-        }
-
-        #endregion
-
-        private void button_ok_Click(object sender, EventArgs e)
+         private void button_ok_Click(object sender, EventArgs e)
         {
             if (CheckOperation() || CheckBranch())
                 return;
