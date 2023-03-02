@@ -44,6 +44,7 @@ namespace Modelirovanie_1
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label_input_change = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // but_input
@@ -168,9 +169,9 @@ namespace Modelirovanie_1
             // 
             this.label_stack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_stack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_stack.Location = new System.Drawing.Point(73, 202);
+            this.label_stack.Location = new System.Drawing.Point(100, 204);
             this.label_stack.Name = "label_stack";
-            this.label_stack.Size = new System.Drawing.Size(124, 478);
+            this.label_stack.Size = new System.Drawing.Size(62, 478);
             this.label_stack.TabIndex = 13;
             this.label_stack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -203,11 +204,22 @@ namespace Modelirovanie_1
             this.label_input_change.Size = new System.Drawing.Size(419, 65);
             this.label_input_change.TabIndex = 18;
             // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(382, 165);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(412, 39);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Таблица принятий решений";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1425, 798);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label_input_change);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -227,6 +239,8 @@ namespace Modelirovanie_1
             this.Text = "Мультимедийная обучающая программа \"Трансляция алгeбраических выражений\"";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label label7;
 
         private System.Windows.Forms.Label label_input_change;
 

@@ -15,6 +15,7 @@ namespace Modelirovanie_1
         private const string Str = "$+-*/^()FP";
         private const int MilliSecond = 1000;
         private Label _indicator;
+
         private readonly byte[,] _arrayBytes =
         {
             { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
@@ -44,7 +45,7 @@ namespace Modelirovanie_1
             _indicator = new Label();
             _indicator.Text = "←";
             _indicator.Size = new Size(250, 230);
-            _indicator.Location = new Point(210, 680);
+            _indicator.Location = new Point(165, 670);
             _indicator.Font = new Font("Microsoft Sans Serif", 20);
             Controls.Add(_indicator);
         }
@@ -52,8 +53,8 @@ namespace Modelirovanie_1
         private void ShowTable()
         {
             const int size = 35;
-            const int width = 550;
-            const int height = 350;
+            const int width = 400;
+            const int height = 250;
             var s = 0;
             for (var x = 0; x < 10; x++)
             {
@@ -329,16 +330,21 @@ namespace Modelirovanie_1
                 {
                     if (c == stack.Peek() && !branch)
                     {
-                        label_stack.Text += '(' + "\t <-- \n";
+                        label_stack.Text += '(' + "\n";
                         branch = true;
+                        _indicator.Location = new Point(165, 670 - (_stackShow.Count - index + 1) * 30);
                     }
                     else
                         label_stack.Text += '(' + "\n";
                 }
                 else if (stack.Count != 0 && c == stack.Peek() && isLife[isLife.Count - 1 - index])
-                    label_stack.Text += c + "\t <-- \n";
+                {
+                    label_stack.Text += c + "\n";
+                    _indicator.Location = new Point(165, 670 - (_stackShow.Count - index + 1) * 30);
+                }
                 else
                     label_stack.Text += c + "\n";
+
                 label_stack.Font = new Font("Microsoft Sans Serif", 20);
 
                 index++;
@@ -429,7 +435,7 @@ namespace Modelirovanie_1
         // }
 
         private async void button_Start(object sender, EventArgs e) =>
-            await TranslateToPostfix(_inputStr /*"A+B-C*sin(E)+arcsin(C)"*/);
+            await TranslateToPostfix( _inputStr/* "A+B-C*sin(E)+arcsin(C)"*/);
 
         private void radioButton_Auto(object sender, EventArgs e) => _mode = false;
 
