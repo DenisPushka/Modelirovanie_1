@@ -62,9 +62,10 @@ namespace Modelirovanie_1
             // 
             // buttom_move_left
             // 
-            this.buttom_move_left.Location = new System.Drawing.Point(12, 63);
+            this.buttom_move_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttom_move_left.Location = new System.Drawing.Point(328, 244);
             this.buttom_move_left.Name = "buttom_move_left";
-            this.buttom_move_left.Size = new System.Drawing.Size(75, 23);
+            this.buttom_move_left.Size = new System.Drawing.Size(120, 60);
             this.buttom_move_left.TabIndex = 1;
             this.buttom_move_left.Text = "<-";
             this.buttom_move_left.UseVisualStyleBackColor = true;
@@ -72,9 +73,10 @@ namespace Modelirovanie_1
             // 
             // buttom_move_right
             // 
-            this.buttom_move_right.Location = new System.Drawing.Point(93, 63);
+            this.buttom_move_right.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttom_move_right.Location = new System.Drawing.Point(454, 244);
             this.buttom_move_right.Name = "buttom_move_right";
-            this.buttom_move_right.Size = new System.Drawing.Size(75, 23);
+            this.buttom_move_right.Size = new System.Drawing.Size(120, 60);
             this.buttom_move_right.TabIndex = 2;
             this.buttom_move_right.Text = "->";
             this.buttom_move_right.UseVisualStyleBackColor = true;
@@ -82,9 +84,10 @@ namespace Modelirovanie_1
             // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(174, 63);
+            this.button_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_clear.Location = new System.Drawing.Point(580, 244);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(75, 23);
+            this.button_clear.Size = new System.Drawing.Size(120, 60);
             this.button_clear.TabIndex = 3;
             this.button_clear.Text = "Очистить";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -92,99 +95,109 @@ namespace Modelirovanie_1
             // 
             // number_1
             // 
-            this.number_1.Location = new System.Drawing.Point(12, 111);
+            this.number_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_1.Location = new System.Drawing.Point(328, 310);
             this.number_1.Name = "number_1";
-            this.number_1.Size = new System.Drawing.Size(75, 23);
+            this.number_1.Size = new System.Drawing.Size(120, 60);
             this.number_1.TabIndex = 4;
-            this.number_1.Text = "1";
+            this.number_1.Text = "A";
             this.number_1.UseVisualStyleBackColor = true;
             this.number_1.Click += new System.EventHandler(this.number_1_Click);
             // 
             // number_2
             // 
-            this.number_2.Location = new System.Drawing.Point(93, 111);
+            this.number_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_2.Location = new System.Drawing.Point(454, 310);
             this.number_2.Name = "number_2";
-            this.number_2.Size = new System.Drawing.Size(75, 23);
+            this.number_2.Size = new System.Drawing.Size(120, 60);
             this.number_2.TabIndex = 5;
-            this.number_2.Text = "2";
+            this.number_2.Text = "B";
             this.number_2.UseVisualStyleBackColor = true;
             this.number_2.Click += new System.EventHandler(this.number_2_Click);
             // 
             // number_3
             // 
-            this.number_3.Location = new System.Drawing.Point(174, 111);
+            this.number_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_3.Location = new System.Drawing.Point(580, 310);
             this.number_3.Name = "number_3";
-            this.number_3.Size = new System.Drawing.Size(75, 23);
+            this.number_3.Size = new System.Drawing.Size(120, 60);
             this.number_3.TabIndex = 6;
-            this.number_3.Text = "3";
+            this.number_3.Text = "C";
             this.number_3.UseVisualStyleBackColor = true;
             this.number_3.Click += new System.EventHandler(this.number_3_Click);
             // 
             // number_4
             // 
-            this.number_4.Location = new System.Drawing.Point(12, 140);
+            this.number_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_4.Location = new System.Drawing.Point(328, 376);
             this.number_4.Name = "number_4";
-            this.number_4.Size = new System.Drawing.Size(75, 23);
+            this.number_4.Size = new System.Drawing.Size(120, 60);
             this.number_4.TabIndex = 7;
-            this.number_4.Text = "4";
+            this.number_4.Text = "D";
             this.number_4.UseVisualStyleBackColor = true;
             this.number_4.Click += new System.EventHandler(this.number_4_Click);
             // 
             // number_5
             // 
-            this.number_5.Location = new System.Drawing.Point(93, 140);
+            this.number_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_5.Location = new System.Drawing.Point(454, 376);
             this.number_5.Name = "number_5";
-            this.number_5.Size = new System.Drawing.Size(75, 23);
+            this.number_5.Size = new System.Drawing.Size(120, 60);
             this.number_5.TabIndex = 8;
-            this.number_5.Text = "5";
+            this.number_5.Text = "E";
             this.number_5.UseVisualStyleBackColor = true;
             this.number_5.Click += new System.EventHandler(this.number_5_Click);
             // 
             // number_6
             // 
-            this.number_6.Location = new System.Drawing.Point(174, 140);
+            this.number_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_6.Location = new System.Drawing.Point(580, 376);
             this.number_6.Name = "number_6";
-            this.number_6.Size = new System.Drawing.Size(75, 23);
+            this.number_6.Size = new System.Drawing.Size(120, 60);
             this.number_6.TabIndex = 9;
-            this.number_6.Text = "6";
+            this.number_6.Text = "F";
             this.number_6.UseVisualStyleBackColor = true;
             this.number_6.Click += new System.EventHandler(this.number_6_Click);
             // 
             // number_7
             // 
-            this.number_7.Location = new System.Drawing.Point(12, 169);
+            this.number_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_7.Location = new System.Drawing.Point(328, 442);
             this.number_7.Name = "number_7";
-            this.number_7.Size = new System.Drawing.Size(75, 23);
+            this.number_7.Size = new System.Drawing.Size(120, 60);
             this.number_7.TabIndex = 10;
-            this.number_7.Text = "7";
+            this.number_7.Text = "G";
             this.number_7.UseVisualStyleBackColor = true;
             this.number_7.Click += new System.EventHandler(this.number_7_Click);
             // 
             // number_8
             // 
-            this.number_8.Location = new System.Drawing.Point(93, 169);
+            this.number_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_8.Location = new System.Drawing.Point(454, 443);
             this.number_8.Name = "number_8";
-            this.number_8.Size = new System.Drawing.Size(75, 23);
+            this.number_8.Size = new System.Drawing.Size(120, 60);
             this.number_8.TabIndex = 11;
-            this.number_8.Text = "8";
+            this.number_8.Text = "H";
             this.number_8.UseVisualStyleBackColor = true;
             this.number_8.Click += new System.EventHandler(this.number_8_Click);
             // 
             // number_9
             // 
-            this.number_9.Location = new System.Drawing.Point(174, 169);
+            this.number_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_9.Location = new System.Drawing.Point(580, 442);
             this.number_9.Name = "number_9";
-            this.number_9.Size = new System.Drawing.Size(75, 23);
+            this.number_9.Size = new System.Drawing.Size(120, 60);
             this.number_9.TabIndex = 12;
-            this.number_9.Text = "9";
+            this.number_9.Text = "K";
             this.number_9.UseVisualStyleBackColor = true;
             this.number_9.Click += new System.EventHandler(this.number_9_Click);
             // 
             // number_LSk
             // 
-            this.number_LSk.Location = new System.Drawing.Point(12, 198);
+            this.number_LSk.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_LSk.Location = new System.Drawing.Point(328, 509);
             this.number_LSk.Name = "number_LSk";
-            this.number_LSk.Size = new System.Drawing.Size(75, 23);
+            this.number_LSk.Size = new System.Drawing.Size(120, 60);
             this.number_LSk.TabIndex = 13;
             this.number_LSk.Text = "(";
             this.number_LSk.UseVisualStyleBackColor = true;
@@ -192,19 +205,21 @@ namespace Modelirovanie_1
             // 
             // number_0
             // 
-            this.number_0.Location = new System.Drawing.Point(93, 198);
+            this.number_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_0.Location = new System.Drawing.Point(454, 509);
             this.number_0.Name = "number_0";
-            this.number_0.Size = new System.Drawing.Size(75, 23);
+            this.number_0.Size = new System.Drawing.Size(120, 61);
             this.number_0.TabIndex = 14;
-            this.number_0.Text = "0";
+            this.number_0.Text = "L";
             this.number_0.UseVisualStyleBackColor = true;
             this.number_0.Click += new System.EventHandler(this.number_0_Click);
             // 
             // number_RSk
             // 
-            this.number_RSk.Location = new System.Drawing.Point(174, 198);
+            this.number_RSk.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_RSk.Location = new System.Drawing.Point(580, 509);
             this.number_RSk.Name = "number_RSk";
-            this.number_RSk.Size = new System.Drawing.Size(75, 23);
+            this.number_RSk.Size = new System.Drawing.Size(120, 61);
             this.number_RSk.TabIndex = 15;
             this.number_RSk.Text = ")";
             this.number_RSk.UseVisualStyleBackColor = true;
@@ -212,9 +227,10 @@ namespace Modelirovanie_1
             // 
             // number_plus
             // 
-            this.number_plus.Location = new System.Drawing.Point(337, 111);
+            this.number_plus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_plus.Location = new System.Drawing.Point(753, 244);
             this.number_plus.Name = "number_plus";
-            this.number_plus.Size = new System.Drawing.Size(75, 23);
+            this.number_plus.Size = new System.Drawing.Size(120, 60);
             this.number_plus.TabIndex = 16;
             this.number_plus.Text = "+";
             this.number_plus.UseVisualStyleBackColor = true;
@@ -222,9 +238,10 @@ namespace Modelirovanie_1
             // 
             // number_minus
             // 
-            this.number_minus.Location = new System.Drawing.Point(337, 140);
+            this.number_minus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_minus.Location = new System.Drawing.Point(753, 310);
             this.number_minus.Name = "number_minus";
-            this.number_minus.Size = new System.Drawing.Size(75, 23);
+            this.number_minus.Size = new System.Drawing.Size(120, 60);
             this.number_minus.TabIndex = 17;
             this.number_minus.Text = "-";
             this.number_minus.UseVisualStyleBackColor = true;
@@ -232,9 +249,10 @@ namespace Modelirovanie_1
             // 
             // number_multiplu
             // 
-            this.number_multiplu.Location = new System.Drawing.Point(337, 169);
+            this.number_multiplu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_multiplu.Location = new System.Drawing.Point(753, 376);
             this.number_multiplu.Name = "number_multiplu";
-            this.number_multiplu.Size = new System.Drawing.Size(75, 23);
+            this.number_multiplu.Size = new System.Drawing.Size(120, 60);
             this.number_multiplu.TabIndex = 18;
             this.number_multiplu.Text = "*";
             this.number_multiplu.UseVisualStyleBackColor = true;
@@ -242,9 +260,10 @@ namespace Modelirovanie_1
             // 
             // number_devesion
             // 
-            this.number_devesion.Location = new System.Drawing.Point(337, 198);
+            this.number_devesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_devesion.Location = new System.Drawing.Point(753, 443);
             this.number_devesion.Name = "number_devesion";
-            this.number_devesion.Size = new System.Drawing.Size(75, 23);
+            this.number_devesion.Size = new System.Drawing.Size(120, 60);
             this.number_devesion.TabIndex = 19;
             this.number_devesion.Text = "/";
             this.number_devesion.UseVisualStyleBackColor = true;
@@ -252,9 +271,10 @@ namespace Modelirovanie_1
             // 
             // number_sin
             // 
-            this.number_sin.Location = new System.Drawing.Point(429, 111);
+            this.number_sin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_sin.Location = new System.Drawing.Point(879, 244);
             this.number_sin.Name = "number_sin";
-            this.number_sin.Size = new System.Drawing.Size(75, 23);
+            this.number_sin.Size = new System.Drawing.Size(120, 60);
             this.number_sin.TabIndex = 20;
             this.number_sin.Text = "sin";
             this.number_sin.UseVisualStyleBackColor = true;
@@ -262,9 +282,10 @@ namespace Modelirovanie_1
             // 
             // number_cos
             // 
-            this.number_cos.Location = new System.Drawing.Point(429, 140);
+            this.number_cos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_cos.Location = new System.Drawing.Point(879, 310);
             this.number_cos.Name = "number_cos";
-            this.number_cos.Size = new System.Drawing.Size(75, 23);
+            this.number_cos.Size = new System.Drawing.Size(120, 60);
             this.number_cos.TabIndex = 21;
             this.number_cos.Text = "cos";
             this.number_cos.UseVisualStyleBackColor = true;
@@ -272,9 +293,10 @@ namespace Modelirovanie_1
             // 
             // number_arcsin
             // 
-            this.number_arcsin.Location = new System.Drawing.Point(429, 169);
+            this.number_arcsin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_arcsin.Location = new System.Drawing.Point(879, 376);
             this.number_arcsin.Name = "number_arcsin";
-            this.number_arcsin.Size = new System.Drawing.Size(75, 23);
+            this.number_arcsin.Size = new System.Drawing.Size(120, 60);
             this.number_arcsin.TabIndex = 22;
             this.number_arcsin.Text = "arcsin";
             this.number_arcsin.UseVisualStyleBackColor = true;
@@ -282,9 +304,10 @@ namespace Modelirovanie_1
             // 
             // number_asrccos
             // 
-            this.number_asrccos.Location = new System.Drawing.Point(429, 198);
+            this.number_asrccos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_asrccos.Location = new System.Drawing.Point(879, 442);
             this.number_asrccos.Name = "number_asrccos";
-            this.number_asrccos.Size = new System.Drawing.Size(75, 23);
+            this.number_asrccos.Size = new System.Drawing.Size(120, 60);
             this.number_asrccos.TabIndex = 23;
             this.number_asrccos.Text = "arccos";
             this.number_asrccos.UseVisualStyleBackColor = true;
@@ -292,9 +315,10 @@ namespace Modelirovanie_1
             // 
             // number_stepen
             // 
-            this.number_stepen.Location = new System.Drawing.Point(510, 111);
+            this.number_stepen.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.number_stepen.Location = new System.Drawing.Point(1005, 244);
             this.number_stepen.Name = "number_stepen";
-            this.number_stepen.Size = new System.Drawing.Size(75, 23);
+            this.number_stepen.Size = new System.Drawing.Size(120, 60);
             this.number_stepen.TabIndex = 24;
             this.number_stepen.Text = "^";
             this.number_stepen.UseVisualStyleBackColor = true;
@@ -302,9 +326,10 @@ namespace Modelirovanie_1
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(12, 236);
+            this.button_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_ok.Location = new System.Drawing.Point(391, 586);
             this.button_ok.Name = "button_ok";
-            this.button_ok.Size = new System.Drawing.Size(75, 23);
+            this.button_ok.Size = new System.Drawing.Size(120, 61);
             this.button_ok.TabIndex = 28;
             this.button_ok.Text = "Ok";
             this.button_ok.UseVisualStyleBackColor = true;
@@ -312,9 +337,10 @@ namespace Modelirovanie_1
             // 
             // button_close
             // 
-            this.button_close.Location = new System.Drawing.Point(93, 236);
+            this.button_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_close.Location = new System.Drawing.Point(517, 586);
             this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(75, 23);
+            this.button_close.Size = new System.Drawing.Size(120, 61);
             this.button_close.TabIndex = 29;
             this.button_close.Text = "Close";
             this.button_close.UseVisualStyleBackColor = true;
@@ -322,16 +348,17 @@ namespace Modelirovanie_1
             // 
             // textBox_input
             // 
-            this.textBox_input.Location = new System.Drawing.Point(12, 22);
+            this.textBox_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_input.Location = new System.Drawing.Point(151, 177);
             this.textBox_input.Name = "textBox_input";
-            this.textBox_input.Size = new System.Drawing.Size(595, 20);
+            this.textBox_input.Size = new System.Drawing.Size(1189, 38);
             this.textBox_input.TabIndex = 30;
             // 
             // Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 279);
+            this.ClientSize = new System.Drawing.Size(1431, 806);
             this.Controls.Add(this.textBox_input);
             this.Controls.Add(this.button_close);
             this.Controls.Add(this.button_ok);

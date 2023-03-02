@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,21 @@ namespace Modelirovanie_1
     public partial class MainForm : Form
     {
         private string _inputStr;
-
         private readonly Dictionary<string, char> _dictionaryForFunction;
-        private Dictionary<char, string> _dictionaryForNumber;
+        private const string Str = "$+-*/^()FP";
+        private readonly byte[,] _arrayBytes =
+        {
+            { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
+            { 2, 2, 2, 1, 1, 1, 1, 2, 1, 6 },
+            { 2, 2, 2, 1, 1, 1, 1, 2, 1, 6 },
+            { 2, 2, 2, 2, 2, 1, 1, 2, 1, 6 },
+            { 2, 2, 2, 2, 2, 1, 1, 2, 1, 6 },
+            { 2, 2, 2, 2, 2, 2, 1, 2, 1, 6 },
+            { 5, 1, 1, 1, 1, 1, 1, 3, 1, 6 },
+            { 2, 2, 2, 2, 2, 2, 1, 2, 5, 6 }
+        };
 
         private bool _mode;
-        // private const int MilliSeconds = 1000;
 
         public MainForm()
         {
@@ -28,7 +38,49 @@ namespace Modelirovanie_1
                 { "arccos", 'г' },
                 { "^", 'д' }
             };
-            _dictionaryForNumber = new Dictionary<char, string>();
+            ShowTable();
+        }
+
+        private void ShowTable()
+        {
+            const int size = 30;
+            const int width = 550;
+            const int height = 350;
+            var s = 0;
+            for (var x = 0; x < 10; x++)
+            {
+                if (x == 0)
+                    for (var index = 0; index < Str.Length; index++)
+                    {
+                        var l = new Label();
+                        l.Text = Str[index].ToString();
+                        l.Location = new Point(index * size + width, height - size);
+                        l.Size = new Size(size, size);
+                        Controls.Add(l);
+                    }
+
+                for (var y = 0; y < 8; y++)
+                {
+                    if (y == 0 && x != 9)
+                        if (Str[x] == ')')
+                            s = -size;
+                        else
+                        {
+                            var label = new Label();
+                            label.Text = Str[x].ToString();
+                            label.Location = new Point(width - 30, x * size + height + s);
+                            label.Size = new Size(size, size);
+                            Controls.Add(label);
+                        }
+
+                    var l = new Label();
+                    l.Text = _arrayBytes[y, x].ToString();
+                    l.Location = new Point(x * size + width, y * size + height);
+                    l.Size = new Size(size, size);
+
+                    Controls.Add(l);
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -58,36 +110,43 @@ namespace Modelirovanie_1
 
         private readonly Stack<char> _liveStack = new Stack<char>();
         private readonly Queue<char> _liveQueue = new Queue<char>();
+
         private int _liveIndex;
-        private bool _isFirst = true;
+
+        // private bool _isFirst = true;
         private string _workString;
         private bool _end;
+        private readonly List<bool> _isLife = new List<bool>();
 
         // Перевод из инфиксной формы в постфиксную
         public async Task<string> TranslateToPostfix(string input)
         {
             Stack<char> stack;
             Queue<char> queue;
+            List<bool> isLife;
             int index;
+            _workString = input;
 
             if (_mode)
             {
                 stack = _liveStack;
                 queue = _liveQueue;
                 index = _liveIndex;
-                if (_isFirst)
+                isLife = _isLife;
+                /*if (_isFirst)
                 {
                     _workString = Translate(input);
                     _isFirst = false;
-                }
+                }*/
             }
             else
             {
                 stack = new Stack<char>();
                 queue = new Queue<char>();
+                isLife = new List<bool>();
                 index = 0;
 
-                _workString = Translate(input);
+                // _workString = Translate(input);
             }
 
             while (_workString.Length != index)
@@ -99,14 +158,16 @@ namespace Modelirovanie_1
                     case '(':
                         stack.Push(element);
                         _stackShow.Push(element);
+                        isLife.Add(true);
                         break;
                     case ')':
-                        Pop(stack, queue, element);
+                        Pop(stack, queue, element, isLife);
 
                         if (index + 1 < _workString.Length && _workString[index + 1] == 'д')
                         {
                             stack.Push(_workString[++index]);
                             _stackShow.Push(_workString[index]);
+                            isLife.Add(true);
                             _liveIndex++;
                         }
 
@@ -130,8 +191,9 @@ namespace Modelirovanie_1
                             if (stack.Count != 0 && stack.Peek() != 'д' &&
                                 (stack.Peek() == '*' || stack.Peek() == '/' ||
                                  _dictionaryForFunction.ContainsValue(stack.Peek())))
-                                Pop(stack, queue, element);
+                                Pop(stack, queue, element, isLife);
                             stack.Push(element);
+                            isLife.Add(true);
                             _stackShow.Push(element);
                             break;
                         }
@@ -142,19 +204,23 @@ namespace Modelirovanie_1
                             {
                                 stack.Push(element);
                                 _stackShow.Push(element);
+                                isLife.Add(true);
                             }
                             else if (stack.Peek() == '/' || stack.Peek() == '*' ||
                                      _dictionaryForFunction.ContainsValue(stack.Peek()))
                             {
-                                Pop(stack, queue, element);
+                                Pop(stack, queue, element, isLife);
                                 stack.Push(element);
                                 _stackShow.Push(element);
+                                isLife.Add(true);
                             }
                             else
                             {
                                 queue.Enqueue(stack.Pop());
+                                isLife[_isLife.Count - 1] = false;
                                 stack.Push(element);
                                 _stackShow.Push(element);
+                                isLife.Add(true);
                             }
 
                             break;
@@ -164,7 +230,7 @@ namespace Modelirovanie_1
                 ShowStack(stack);
                 ShowChangeInputStr(index, _workString);
                 ShowQueue(queue);
-                ShowChangeOut(queue);
+                // ShowChangeOut(queue);
                 if (_mode)
                 {
                     _liveIndex++;
@@ -172,19 +238,23 @@ namespace Modelirovanie_1
                 }
 
                 index++;
-                await Task.Delay(3000);
+                await Task.Delay(700);
             }
 
             if (_workString.Length <= index)
             {
+                ShowStack(stack);
+                await Task.Delay(700);
                 if (stack.Count != 0)
-                    for (var i = stack.Count - 1; i >= 0; i--)
+                    for (var i = 0; i < stack.Count; i++)
                     {
                         if (stack.Peek() != '(')
                             queue.Enqueue(stack.Pop());
                         else
                             stack.Pop();
+                        isLife[_isLife.Count - 1 - i] = false;
                         ShowStack(stack);
+                        await Task.Delay(700);
                         if (_mode)
                             break;
                     }
@@ -196,15 +266,16 @@ namespace Modelirovanie_1
             var result = ShowQueue(queue);
 
             // Выход в цифрах
-            ShowChangeOut(queue);
+            // ShowChangeOut(queue);
 
             if (_workString.Length <= index && _end)
             {
-                _isFirst = true;
-                _dictionaryForNumber.Clear();
+                // _isFirst = true;
+                // _dictionaryForNumber.Clear();
                 _liveIndex = 0;
                 _liveQueue.Clear();
                 _liveStack.Clear();
+                _isLife.Clear();
                 _end = false;
                 label_stack.Text = "";
             }
@@ -212,15 +283,16 @@ namespace Modelirovanie_1
             return result;
         }
 
-        private void Pop(Stack<char> stack, Queue<char> queue, char element)
+        private void Pop(Stack<char> stack, Queue<char> queue, char element, List<bool> isLife)
         {
-            for (var i = stack.Count - 1; i >= 0; i--)
+            for (var i = 0; i < stack.Count; i++)
             {
                 if (stack.Peek() == '(')
                 {
                     if (element == ')' && (element != '-' || element != '+'))
                     {
                         stack.Pop();
+                        isLife[isLife.Count - 1 - i] = false;
                     }
 
                     return;
@@ -232,73 +304,89 @@ namespace Modelirovanie_1
                     return;
 
                 queue.Enqueue(stack.Pop());
+                isLife[isLife.Count - 1 - i] = false;
             }
         }
 
         // Перевод из цифр и формул в буквы
-        private string Translate(string workString)
-        {
-            var ch = 'A';
-            var index = 0;
-            var result = new StringBuilder();
-
-            while (index != workString.Length)
-            {
-                if (char.IsDigit(workString[index]))
-                {
-                    var buffer = new StringBuilder().Append(workString[index]);
-                    while (++index != workString.Length && char.IsDigit(workString[index]))
-                        buffer.Append(workString[index]);
-                    _dictionaryForNumber.Add(ch, buffer.ToString());
-                    result.Append(ch);
-                    ch++;
-                }
-                else if (char.IsLetter(workString[index]) || workString[index] == '^')
-                {
-                    var c = ' ';
-                    switch (workString[index])
-                    {
-                        case 's':
-                            c = _dictionaryForFunction[workString.Substring(index, 3)];
-                            break;
-                        case 'c':
-                            c = _dictionaryForFunction[workString.Substring(index, 3)];
-                            break;
-                        // arc sin && arc cos
-                        case 'a':
-                            c = _dictionaryForFunction[workString.Substring(index, 6)];
-                            index += 3;
-                            break;
-                        case '^':
-                            c = _dictionaryForFunction[workString.Substring(index, 1)];
-                            index -= 2;
-                            break;
-                    }
-
-                    index += 3;
-                    result.Append(c);
-                }
-                else
-                {
-                    result.Append(workString[index]);
-                    index++;
-                }
-            }
-
-            return result.ToString();
-        }
+        // private string Translate(string workString)
+        // {
+        //     var ch = 'A';
+        //     var index = 0;
+        //     var result = new StringBuilder();
+        //
+        //     while (index != workString.Length)
+        //     {
+        //         if (char.IsDigit(workString[index]))
+        //         {
+        //             var buffer = new StringBuilder().Append(workString[index]);
+        //             while (++index != workString.Length && char.IsDigit(workString[index]))
+        //                 buffer.Append(workString[index]);
+        //             _dictionaryForNumber.Add(ch, buffer.ToString());
+        //             result.Append(ch);
+        //             ch++;
+        //         }
+        //         else if (char.IsLetter(workString[index]) || workString[index] == '^')
+        //         {
+        //             var c = ' ';
+        //             switch (workString[index])
+        //             {
+        //                 case 's':
+        //                     c = _dictionaryForFunction[workString.Substring(index, 3)];
+        //                     break;
+        //                 case 'c':
+        //                     c = _dictionaryForFunction[workString.Substring(index, 3)];
+        //                     break;
+        //                 // arc sin && arc cos
+        //                 case 'a':
+        //                     c = _dictionaryForFunction[workString.Substring(index, 6)];
+        //                     index += 3;
+        //                     break;
+        //                 case '^':
+        //                     c = _dictionaryForFunction[workString.Substring(index, 1)];
+        //                     index -= 2;
+        //                     break;
+        //             }
+        //
+        //             index += 3;
+        //             result.Append(c);
+        //         }
+        //         else
+        //         {
+        //             result.Append(workString[index]);
+        //             index++;
+        //         }
+        //     }
+        //
+        //     return result.ToString();
+        // }
 
         private readonly Stack<char> _stackShow = new Stack<char>();
 
         private void ShowStack(Stack<char> stack)
         {
+            if (stack.Count == 0) return;
             label_stack.Text = "";
+            var index = 0;
+            var branch = false;
             foreach (var c in _stackShow)
             {
-                if (stack.Count!= 0 && c == stack.Peek())
+                if (c == '(')
+                {
+                    if (c == stack.Peek() && !branch)
+                    {
+                        label_stack.Text += '(' + "\t <-- \n";
+                        branch = true;
+                    }
+                    else
+                        label_stack.Text += '(' + "\n";
+                }
+                else if (stack.Count != 0 && c == stack.Peek() && _isLife[_isLife.Count - 1 - index])
                     label_stack.Text += c + "\t <-- \n";
                 else
                     label_stack.Text += c + "\n";
+
+                index++;
             }
         }
 
@@ -324,10 +412,10 @@ namespace Modelirovanie_1
                         label_input_change.Text += c.Key;
                     }
                 }
-                else if (_dictionaryForNumber.ContainsKey(workStr[i]))
-                {
-                    label_input_change.Text += _dictionaryForNumber[workStr[i]];
-                }
+                // else if (_dictionaryForNumber.ContainsKey(workStr[i]))
+                // {
+                //     label_input_change.Text += _dictionaryForNumber[workStr[i]];
+                // }
                 else
                 {
                     label_input_change.Text += workStr[i];
@@ -335,28 +423,28 @@ namespace Modelirovanie_1
             }
         }
 
-        private void ShowChangeOut(Queue<char> queue)
-        {
-            label_postfix_number.Text = "";
-            foreach (var c in queue)
-            {
-                if (_dictionaryForNumber.ContainsKey(c))
-                    label_postfix_number.Text += _dictionaryForNumber[c] + @" ";
-                else if (_dictionaryForFunction.ContainsValue(c))
-                {
-                    foreach (var ch in _dictionaryForFunction.Where(ch => ch.Value == c))
-                    {
-                        label_postfix_number.Text += ch.Key;
-                    }
-                }
-                else
-                    label_postfix_number.Text += c;
-            }
-        }
+        // private void ShowChangeOut(Queue<char> queue)
+        // {
+        //     label_postfix_number.Text = "";
+        //     foreach (var c in queue)
+        //     {
+        //         if (_dictionaryForNumber.ContainsKey(c))
+        //             label_postfix_number.Text += _dictionaryForNumber[c] + @" ";
+        //         else if (_dictionaryForFunction.ContainsValue(c))
+        //         {
+        //             foreach (var ch in _dictionaryForFunction.Where(ch => ch.Value == c))
+        //             {
+        //                 label_postfix_number.Text += ch.Key;
+        //             }
+        //         }
+        //         else
+        //             label_postfix_number.Text += c;
+        //     }
+        // }
 
         private async void button_Start(object sender, EventArgs e)
         {
-            _dictionaryForNumber.Clear();
+            // _dictionaryForNumber.Clear();
             await TranslateToPostfix(_inputStr);
         }
 
@@ -367,6 +455,11 @@ namespace Modelirovanie_1
         private async void button_Tact(object sender, EventArgs e)
         {
             await TranslateToPostfix(_inputStr);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
