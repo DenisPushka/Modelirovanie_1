@@ -390,6 +390,7 @@ namespace Modelirovanie_1
             this.Controls.Add(this.buttom_move_left);
             this.Location = new System.Drawing.Point(15, 15);
             this.Name = "Input";
+            this.Text = "Мастер функций";
             this.Load += new System.EventHandler(this.Input_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

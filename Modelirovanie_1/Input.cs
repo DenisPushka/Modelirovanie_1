@@ -117,7 +117,14 @@ namespace Modelirovanie_1
                 if (arrayOperations.Contains(c) && arrayOperations.Contains(c2))
                 {
                     MessageBox.Show(@"Операторы:" + c + c2 + @" идут подряд!", @"Ошибка!",
-                        MessageBoxButtons.OK);
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+
+                if (char.IsUpper(c) && char.IsUpper(c2))
+                {
+                    MessageBox.Show(@"Переменные: " + c +" "+ c2 + @" идут подряд!", @"Ошибка!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             }
@@ -125,7 +132,7 @@ namespace Modelirovanie_1
             if (arrayOperations.Contains(InputStr[InputStr.Count - 1]))
             {
                 MessageBox.Show(@"Оператор:" + InputStr[InputStr.Count - 1] + @" идет последний!", @"Ошибка!",
-                    MessageBoxButtons.OK);
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
 
@@ -141,14 +148,21 @@ namespace Modelirovanie_1
                 if (c == '(' && c2 == ')')
                 {
                     MessageBox.Show(@"В скобках ничего не указано!", @"Ошибка!",
-                        MessageBoxButtons.OK);
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
 
-                if (char.IsDigit(c) && c2 == '(')
+                if (char.IsUpper(c) && c2 == '(')
                 {
                     MessageBox.Show(@"Между переменной " + c + @" и скобкой отсутствует знак!", @"Ошибка!",
-                        MessageBoxButtons.OK);
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+                
+                if (c == ')' && char.IsUpper(c2))
+                {
+                    MessageBox.Show(@"Между cкобкой ) и переменной " + c2 + @" отсутствует знак!", @"Ошибка!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             }

@@ -45,7 +45,7 @@ namespace Modelirovanie_1
             _indicator = new Label();
             _indicator.Text = "←";
             _indicator.Size = new Size(250, 230);
-            _indicator.Location = new Point(165, 670);
+            _indicator.Location = new Point(165, 640);
             _indicator.Font = new Font("Microsoft Sans Serif", 20);
             Controls.Add(_indicator);
         }
@@ -136,7 +136,6 @@ namespace Modelirovanie_1
             Queue<char> queue;
             List<bool> isLife;
             int index;
-            _workString = input;
 
             if (_mode)
             {
@@ -332,6 +331,7 @@ namespace Modelirovanie_1
                     {
                         label_stack.Text += '(' + "\n";
                         branch = true;
+                        index = _stackShow.Count == 1 ? 0 : index; 
                         _indicator.Location = new Point(165, 670 - (_stackShow.Count - index + 1) * 30);
                     }
                     else
@@ -340,6 +340,7 @@ namespace Modelirovanie_1
                 else if (stack.Count != 0 && c == stack.Peek() && isLife[isLife.Count - 1 - index])
                 {
                     label_stack.Text += c + "\n";
+                    index = _stackShow.Count == 1 ? 0 : index;
                     _indicator.Location = new Point(165, 670 - (_stackShow.Count - index + 1) * 30);
                 }
                 else
@@ -415,27 +416,11 @@ namespace Modelirovanie_1
             return result.ToString();
         }
 
-        // private void ShowChangeOut(Queue<char> queue)
-        // {
-        //     label_postfix_number.Text = "";
-        //     foreach (var c in queue)
-        //     {
-        //         if (_dictionaryForNumber.ContainsKey(c))
-        //             label_postfix_number.Text += _dictionaryForNumber[c] + @" ";
-        //         else if (_dictionaryForFunction.ContainsValue(c))
-        //         {
-        //             foreach (var ch in _dictionaryForFunction.Where(ch => ch.Value == c))
-        //             {
-        //                 label_postfix_number.Text += ch.Key;
-        //             }
-        //         }
-        //         else
-        //             label_postfix_number.Text += c;
-        //     }
-        // }
-
-        private async void button_Start(object sender, EventArgs e) =>
-            await TranslateToPostfix( _inputStr/* "A+B-C*sin(E)+arcsin(C)"*/);
+        private async void button_Start(object sender, EventArgs e)
+        {
+            _stackShow.Clear();
+            await TranslateToPostfix(_inputStr);
+        }
 
         private void radioButton_Auto(object sender, EventArgs e) => _mode = false;
 
