@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Modelirovanie_1.Translate
 {
@@ -31,7 +32,7 @@ namespace Modelirovanie_1.Translate
             };
         }
 
-        // Перевод из цифр и формул в буквы
+        // Перевод формул в буквы
         private string TranslateInputStrToWork(string workString)
         {
             // var ch = 'A';
@@ -97,14 +98,17 @@ namespace Modelirovanie_1.Translate
             { 2, 2, 2, 2, 2, 2, 1, 2, 5, 6 }
         };
 
+        // Переменная для выхода
+        private bool _exit;
         // Перевод из инфиксной формы в постфиксную
-        public void Step()
+        private void Step()
         {
             var operation = _arrayBytes[GetRow(), GetColumn()];
 
-            if ( Operation(operation) && _index < _workString.Length)
+            if (Operation(operation) && _index < _workString.Length)
                 _index++;
             
+            // Выводы
             _mainForm.ShowPostfix(_resultString.ToString());
             _mainForm.ShowChangeInputStr(_index, _workString);
             _mainForm.ShowStack(_stack, _stackIndex);
@@ -119,10 +123,10 @@ namespace Modelirovanie_1.Translate
                 return await Task.FromResult(_resultString.ToString());
             }
             
-            while (_index < _workString.Length || _stackIndex != -1)
+            while (!_exit && (_index < _workString.Length - 1 || _stackIndex != -2))
             {
                 Step();
-               //  await Task.Delay(MilliSecond);
+                await Task.Delay(MilliSecond);
             }
             
             return await Task.FromResult(_resultString.ToString());
@@ -159,32 +163,36 @@ namespace Modelirovanie_1.Translate
             return _dictionaryColumn.ContainsKey(_stack[_stackIndex]) ? _dictionaryColumn[_stack[_stackIndex]] : 7;
         }
 
-        // Поле для редактирования элемента (показывает, был ли считан в вывод элемент из стека)
-        private bool _read;
+        // Поле, показывающее, что можно увеличивать индекс для записи (по обновленному индексу будет использованная скобка)
+        private bool _border;
+        // Поле, показывающее, что нужно увеличить индекс, потому что последующие поля уже использованы, а текушее перезаписано и не использовано
+        private bool _edit;
         private bool Operation(int operation)
         {
             switch (operation)
             {
                 // Добавление символа в стек
                 case 1:
-                    // Проверка на выход за границы стека
-                    if (_stackIndex == -1) _stackIndex = 0;
                     
                     // Проверка на изменение элемента внутри стека (перезапись)
-                    if (_stackIndex + 1 < _stack.Count || _read)
+                    if (_stackIndex + 1 < _stack.Count || _stackIndex == -1)
                     {
-                        // Если элемент не был считан, то увеличить указатель
-                        if (!_read)
+                        // Если элемент самый первый или верно одно из полей
+                        if (_stackIndex == -1 || _border || _edit)
+                        {
                             _stackIndex++;
+                            _edit = true;
+                        }
                         _stack[_stackIndex] = _workString[_index];
                     }
                     else
                     {
                         _stack.Add(_workString[_index]);
                         _stackIndex = _stack.Count - 1;
+                        _edit = false;
                     }
                     
-                    _read = false;
+                    _border = false;
                     break;
 
                 // Извлекаем символ из стека и отправляем его в выходную строку
@@ -192,20 +200,23 @@ namespace Modelirovanie_1.Translate
                     if (_stackIndex == -1) _stackIndex = 0;
                     _resultString.Append(_stack[_stackIndex]);
                     _stackIndex--;
-                    _read = true;
+                    _edit = false;
                     return false;
 
                 // Удалить ")"
                 case 3:
                     _stackIndex--;
-                    _read = false;
+                    _border = true;
+                    _edit = false;
                     break;
 
                 case 4:
-                    var z = 0;
+                    MessageBox.Show("Успешное окончание преобразований!");
+                    _exit = true;
                     break;
                 case 5:
-                    var a = 0;
+                    MessageBox.Show("Ошибка скобочной структуры!");
+                    _exit = true;
                     break;
 
                 // Пересылаем символ из входной строки в выходную

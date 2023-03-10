@@ -36,7 +36,7 @@ namespace Modelirovanie_1
             _translate = new Translate.Translate(this);
             _indicator.Text = "←";
             _indicator.Size = new Size(250, 230);
-            _indicator.Location = new Point(165, 646);
+            _indicator.Location = new Point(165, 650);
             _indicator.Font = new Font("Microsoft Sans Serif", 20);
             Controls.Add(_indicator);
         }
@@ -116,18 +116,17 @@ namespace Modelirovanie_1
         {
             if (stack.Count == 0) return;
             label_stack.Text = "";
-            var str = new StringBuilder();
+            label_stack.Font = new Font("Microsoft Sans Serif", 20);
 
             for (var i = stack.Count - 1; i >= 0; i--)
             {
-                index++;
+                // index++;
                 var c = stack[i];
-                str.Append(c + "\n");
+                label_stack.Text += c + "\n";
             }
 
-            if (index <= 0) index = 1;
-            _indicator.Location = new Point(165, 670 - index * 12);
-            label_stack.Text = str.ToString();
+            if (index == -1) index = 0;
+            _indicator.Location = new Point(165, 620 - index * 40);
         }
 
         public void ShowPostfix(string str)
@@ -142,7 +141,9 @@ namespace Modelirovanie_1
             {
                 if (_translate.DictionaryForFunction.ContainsValue(workStr[i]))
                 {
-                    foreach (var c in _translate.DictionaryForFunction.Where(c => c.Value == workStr[i]))
+                    foreach (var c in _translate
+                                 .DictionaryForFunction
+                                 .Where(c => c.Value == workStr[i]))
                         label_input_change.Text += c.Key;
                 }
                 else
