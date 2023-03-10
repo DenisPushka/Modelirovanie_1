@@ -246,7 +246,7 @@ namespace Modelirovanie_1
 
         private System.Windows.Forms.Label label6;
 
-        private System.Windows.Forms.Label label_stack;
+        public System.Windows.Forms.Label label_stack;
 
         private System.Windows.Forms.Button but_input;
 

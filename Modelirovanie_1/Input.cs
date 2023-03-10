@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Modelirovanie_1;
 
-namespace Modelirovanie_1
+namespace Modelirovanie
 {
     public partial class Input : Form
     {

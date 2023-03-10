@@ -66,7 +66,6 @@ C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\bin\Debug\zh-Hans\Mi
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.csproj.AssemblyReference.cache
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.MainForm.resources
-C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.Input.resources
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.Properties.Resources.resources
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.csproj.GenerateResource.cache
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.csproj.CoreCompileInputs.cache
@@ -78,3 +77,4 @@ C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\bin\Debug\Modelirova
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.exe.manifest
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.application
 C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie_1.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\RiderProjects\Modelirovanie_1\Modelirovanie_1\obj\Debug\Modelirovanie.Input.resources

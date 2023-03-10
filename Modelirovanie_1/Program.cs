@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelirovanie;
 using Modelirovanie_1;
 
 namespace Modelirovanie

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Modelirovanie_1
 {
@@ -9,7 +8,7 @@ namespace Modelirovanie_1
         [TestMethod]
         public void OperationPlusMinus()
         {
-            var main = new MainForm();
+            var main = new Translate.Translate(new MainForm());
             var result = main.TranslateToPostfix("A+B-C+D");
             Assert.AreEqual("AB+C-D+", result.Result);
         }
@@ -17,7 +16,7 @@ namespace Modelirovanie_1
         [TestMethod]
         public void OperationMultiplication()
         {
-            var main = new MainForm();
+            var main = new Translate.Translate(new MainForm());
             var result = main.TranslateToPostfix("A+(B-C)*D");
             Assert.AreEqual("ABC-D*+", result.Result);
         }
@@ -25,7 +24,7 @@ namespace Modelirovanie_1
         [TestMethod]
         public void OperationSinCosArcSinArcCos()
         {
-            var main = new MainForm();
+            var main = new Translate.Translate(new MainForm());
             var result = main.TranslateToPostfix("sin(cos(A+B/C))-D+E*(F*G-H)");
             Assert.AreEqual("ABC/+баD-EFG*H-*+", result.Result);
         }
@@ -33,25 +32,34 @@ namespace Modelirovanie_1
         [TestMethod]
         public void OperationDegree1()
         {
-            var main = new MainForm();
-            var result = main.TranslateToPostfix("A+B^C+D");
+            var main = new Translate.Translate(new MainForm());
+            var result = main.TranslateToPostfix("A+(B^C+D)");
             Assert.AreEqual("ABCдD++", result.Result);
         }
         
         [TestMethod]
         public void OperationDegree2()
         {
-            var main = new MainForm();
-            var result = main.TranslateToPostfix("A+B^C*D");
+            var main = new Translate.Translate(new MainForm());
+            var result = main.TranslateToPostfix("A+B^(C*D)");
             Assert.AreEqual("ABCD*д+", result.Result);
         }
         
         [TestMethod]
         public void OperationHard()
         {
-            var main = new MainForm();
-            var result = main.TranslateToPostfix("sin(cos(A+B/C))-D+E*(F*G-H)^I");
-            Assert.AreEqual("ABC/+баD-EFG*H-Iд*+", result.Result);
+            var main = new Translate.Translate(new MainForm());
+            var result = main.TranslateToPostfix("sin(cos(A+B/C))-D^(I/K)+E*(F*G-H)");
+            Assert.AreEqual("ABC/+баDIK/д-EFG*H-*+", result.Result);
+        }
+        
+         
+        [TestMethod]
+        public void Operation()
+        {
+            var main = new Translate.Translate(new MainForm());
+            var result = main.TranslateToPostfix("A-cos(B)*D");
+            Assert.AreEqual("ABбD*-", result.Result);
         }
     }
 }

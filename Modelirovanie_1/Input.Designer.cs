@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Modelirovanie_1
+namespace Modelirovanie
 {
     partial class Input
     {
