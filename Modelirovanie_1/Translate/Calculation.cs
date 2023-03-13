@@ -82,6 +82,7 @@ namespace Modelirovanie_1.Translate
                 await Task.Delay(1500);
             }
 
+            _mainForm.Result.Text = "Результат вычисления: " + _stack[StackIndex];
             return _stack[StackIndex];
         }
 

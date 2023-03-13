@@ -12,8 +12,8 @@ namespace Modelirovanie_1
     {
         private string _inputStr;
         private const string Str = "$+-*/^()FP";
-        private readonly Label _indicator_stack_operation;
-        private readonly Label _indicator_stack_arithmetic;
+        private readonly Label _indicatorStackOperation;
+        private readonly Label _indicatorStackArithmetic;
         private readonly byte[,] _arrayBytes =
         {
             { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
@@ -25,27 +25,37 @@ namespace Modelirovanie_1
             { 5, 1, 1, 1, 1, 1, 1, 3, 1, 6 },
             { 2, 2, 2, 2, 2, 2, 1, 2, 5, 6 }
         };
-
         private new const int Height = 580;
         private readonly Translate.TranslateToPostfix _translateToPostfix;
+
+        public Label Result;
 
         public MainForm()
         {
             InitializeComponent();
             ShowTable();
-            _indicator_stack_operation = new Label();
-            _indicator_stack_arithmetic = new Label();
+            Result = new Label();
+            Result.Location = new Point(850, 80);
+            Result.Font = new Font("Microsoft Sans Serif", 20);
+            Result.Size = new Size(700, 40);
+            Result.Text = "Результат вычисления: ";
+            
+            _indicatorStackOperation = new Label();
+            _indicatorStackArithmetic = new Label();
             _translateToPostfix = new Translate.TranslateToPostfix(this);
-            _indicator_stack_operation.Text = "←";
-            _indicator_stack_operation.Size = new Size(250, 230);
-            _indicator_stack_operation.Location = new Point(65, Height);
-            _indicator_stack_operation.Font = new Font("Microsoft Sans Serif", 20);
-            _indicator_stack_arithmetic.Text = "←";
-            _indicator_stack_arithmetic.Size = new Size(250, 230);
-            _indicator_stack_arithmetic.Location = new Point(270, Height);
-            _indicator_stack_arithmetic.Font = new Font("Microsoft Sans Serif", 20);
-            Controls.Add(_indicator_stack_operation);
-            Controls.Add(_indicator_stack_arithmetic);
+            _indicatorStackOperation.Text = "←";
+            _indicatorStackOperation.Size = new Size(50, 30);
+            _indicatorStackOperation.Location = new Point(65, Height);
+            _indicatorStackOperation.Font = new Font("Microsoft Sans Serif", 20);
+            
+            _indicatorStackArithmetic.Text = "←";
+            _indicatorStackArithmetic.Size = new Size(50, 30);
+            _indicatorStackArithmetic.Location = new Point(270, Height);
+            _indicatorStackArithmetic.Font = new Font("Microsoft Sans Serif", 20);
+            
+            Controls.Add(_indicatorStackOperation);
+            Controls.Add(_indicatorStackArithmetic);
+            Controls.Add(Result);
         }
 
         private void ShowTable()
@@ -119,16 +129,20 @@ namespace Modelirovanie_1
 
         private void button_to_input(object sender, EventArgs e) => label_input_main(sender, e);
 
-        public void ShowDictionary(Dictionary<char, string> dictionaryNumber)
+        public void ShowDictionary(Dictionary<char, string> dictionaryNumber,Dictionary<string, char> dictionaryFunction)
         {
             if (dictionaryNumber.Count == 0) return;
             label_dictionary.Text = "";
             label_dictionary.Font = new Font("Microsoft Sans Serif", 20);
+            label_dictionary_function.Text = "";
+            label_dictionary_function.Font = new Font("Microsoft Sans Serif", 20);
 
-            foreach (var v in dictionaryNumber)
-            {
-                label_dictionary.Text += v.Key + " ---------- " + v.Value + "\n";
-            }
+            foreach (var v in dictionaryNumber) 
+                label_dictionary.Text += v.Key + @" ---------- " + v.Value + "\n";
+            
+            
+            foreach (var v in dictionaryFunction) 
+                label_dictionary_function.Text += v.Key + @" ---------- " + v.Value + "\n";
         }
         
         public void ShowStackTranslate(List<char> stack, int index)
@@ -144,7 +158,7 @@ namespace Modelirovanie_1
             }
 
             if (index == -1) index = 0;
-            _indicator_stack_operation.Location = new Point(65, Height - index * 40);
+            _indicatorStackOperation.Location = new Point(65, Height - index * 40);
         }
 
         public void ShowStackArithmetic(List<double> stack, int index)
@@ -160,7 +174,7 @@ namespace Modelirovanie_1
                 label_stack_Arithm.Text += c + "\n";
             }
             
-            _indicator_stack_arithmetic.Location = new Point(270, Height - index * 40);
+            _indicatorStackArithmetic.Location = new Point(270, Height - index * 40);
         }
         
         public void ShowPostfix(string str)
@@ -173,10 +187,10 @@ namespace Modelirovanie_1
             label_input_change.Text = "";
             for (var i = index; i < workStr.Length; i++)
             {
-                if (_translateToPostfix.DictionaryForFunction.ContainsValue(workStr[i]))
+                if (_translateToPostfix.DictionaryFunction.ContainsValue(workStr[i]))
                 {
                     foreach (var c in _translateToPostfix
-                                 .DictionaryForFunction
+                                 .DictionaryFunction
                                  .Where(c => c.Value == workStr[i]))
                         label_input_change.Text += c.Key;
                 }

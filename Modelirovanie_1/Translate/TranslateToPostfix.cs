@@ -8,7 +8,7 @@ namespace Modelirovanie_1.Translate
 {
     public class TranslateToPostfix
     {
-        public readonly Dictionary<string, char> DictionaryForFunction;
+        public readonly Dictionary<string, char> DictionaryFunction;
         public readonly Dictionary<char, string> DictionaryNumber;
         private const int MilliSecond = 3000;
         private string _workString;
@@ -24,7 +24,7 @@ namespace Modelirovanie_1.Translate
         public TranslateToPostfix(MainForm mainForm)
         {
             _mainForm = mainForm;
-            DictionaryForFunction = new Dictionary<string, char>
+            DictionaryFunction = new Dictionary<string, char>
             {
                 { "sin", 'а' },
                 { "cos", 'б' },
@@ -60,18 +60,18 @@ namespace Modelirovanie_1.Translate
                     switch (workString[index])
                     {
                         case 's':
-                            c = DictionaryForFunction[workString.Substring(index, 3)];
+                            c = DictionaryFunction[workString.Substring(index, 3)];
                             break;
                         case 'c':
-                            c = DictionaryForFunction[workString.Substring(index, 3)];
+                            c = DictionaryFunction[workString.Substring(index, 3)];
                             break;
                         // arc sin && arc cos
                         case 'a':
-                            c = DictionaryForFunction[workString.Substring(index, 6)];
+                            c = DictionaryFunction[workString.Substring(index, 6)];
                             index += 3;
                             break;
                         case '^':
-                            c = DictionaryForFunction[workString.Substring(index, 1)];
+                            c = DictionaryFunction[workString.Substring(index, 1)];
                             index -= 2;
                             break;
                     }
@@ -124,7 +124,7 @@ namespace Modelirovanie_1.Translate
             if (!_isFirst)
             {
                 _workString = TranslateInputStrToWork(str);
-                _mainForm.ShowDictionary(DictionaryNumber);
+                _mainForm.ShowDictionary(DictionaryNumber, DictionaryFunction);
                 _isFirst = true;
             }
             
@@ -141,7 +141,7 @@ namespace Modelirovanie_1.Translate
             }
 
             var result = await Task.FromResult(_resultString.ToString());
-            var calculation = new Calculation(result, DictionaryForFunction, DictionaryNumber, _mainForm);
+            var calculation = new Calculation(result, DictionaryFunction, DictionaryNumber, _mainForm);
             return await calculation.Start();
         }
 
@@ -222,7 +222,7 @@ namespace Modelirovanie_1.Translate
                         _readFunc = true;
                     
                     if (!_readFunc)
-                        foreach (var c in DictionaryForFunction
+                        foreach (var c in DictionaryFunction
                                      .Where(c => c.Value == _stack[_stackIndex]))
                             _readFunc = true;
 

@@ -48,6 +48,8 @@ namespace Modelirovanie_1
             this.label_stack_Arithm = new System.Windows.Forms.Label();
             this.label_dictionary = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label_dictionary_function = new System.Windows.Forms.Label();
+            this.label_dict_func = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // but_input
@@ -234,7 +236,7 @@ namespace Modelirovanie_1
             this.label_dictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_dictionary.Location = new System.Drawing.Point(849, 152);
             this.label_dictionary.Name = "label_dictionary";
-            this.label_dictionary.Size = new System.Drawing.Size(289, 495);
+            this.label_dictionary.Size = new System.Drawing.Size(227, 495);
             this.label_dictionary.TabIndex = 21;
             this.label_dictionary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -243,10 +245,30 @@ namespace Modelirovanie_1
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(849, 123);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(289, 28);
+            this.label8.Size = new System.Drawing.Size(227, 28);
             this.label8.TabIndex = 22;
             this.label8.Text = "Обозначения чисел";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_dictionary_function
+            // 
+            this.label_dictionary_function.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label_dictionary_function.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_dictionary_function.Location = new System.Drawing.Point(1082, 152);
+            this.label_dictionary_function.Name = "label_dictionary_function";
+            this.label_dictionary_function.Size = new System.Drawing.Size(241, 495);
+            this.label_dictionary_function.TabIndex = 23;
+            this.label_dictionary_function.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_dict_func
+            // 
+            this.label_dict_func.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_dict_func.Location = new System.Drawing.Point(1082, 123);
+            this.label_dict_func.Name = "label_dict_func";
+            this.label_dict_func.Size = new System.Drawing.Size(241, 23);
+            this.label_dict_func.TabIndex = 24;
+            this.label_dict_func.Text = "Обозначения функций";
+            this.label_dict_func.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -254,6 +276,8 @@ namespace Modelirovanie_1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.label_dict_func);
+            this.Controls.Add(this.label_dictionary_function);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label_dictionary);
             this.Controls.Add(this.label_stack_Arithm);
@@ -279,6 +303,9 @@ namespace Modelirovanie_1
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label_dictionary_function;
+        private System.Windows.Forms.Label label_dict_func;
 
         private System.Windows.Forms.Label label8;
 
