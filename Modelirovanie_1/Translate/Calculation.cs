@@ -37,6 +37,8 @@ namespace Modelirovanie_1.Translate
             };
 
         private bool _doOperation;
+        private bool _addToStack;
+
         public double Start()
         {
             while (_index < _postfixStr.Length)
@@ -48,10 +50,11 @@ namespace Modelirovanie_1.Translate
 
                 if (char.IsUpper(_postfixStr[_index]))
                 {
-                    Add(double.Parse(_dictionaryNumber[_postfixStr[_index]]));
+                    Add(double.Parse(_dictionaryNumber[_postfixStr[_index]]), false);
                 }
                 else
                 {
+                    _addToStack = false;
                     var operation = _postfixStr[_index].ToString();
                     foreach (var c in _dictionaryForFunction
                                  .Where(c => c.Value == _postfixStr[_index]))
@@ -61,10 +64,19 @@ namespace Modelirovanie_1.Translate
 
                     // todo отредактировать
                     var p2 = _stack[StackIndex];
-                    StackIndex--;
-                    var p1 = _stack[StackIndex];
-                    var result = Operators[operation](p1, p2);
-                    Add(result);
+                    double result;
+                    if (_dictionaryForFunction.ContainsKey(operation) && operation != "^")
+                    {
+                        result = Operators[operation](p2, 0);
+                    }
+                    else
+                    {
+                        StackIndex--;
+                        var p1 = _stack[StackIndex];
+                        result = Operators[operation](p1, p2);
+                    }
+
+                    Add(result, true);
                     _doOperation = true;
                 }
 
@@ -74,14 +86,14 @@ namespace Modelirovanie_1.Translate
             return _stack[StackIndex];
         }
 
-        private void Add(double number)
+        private void Add(double number, bool calculation)
         {
-            if (StackIndex + 1 < _stack.Count || StackIndex == -1)
+            if (StackIndex + 1 < _stack.Count || StackIndex == -1 || calculation)
             {
-                // Если элемент самый первый или верно одно из полей
-                if (StackIndex == -1 || _doOperation)
+                if (StackIndex == -1 || (_doOperation && !calculation) || _addToStack)
                 {
                     StackIndex++;
+                    _addToStack = true;
                     _doOperation = false;
                 }
 
@@ -89,6 +101,7 @@ namespace Modelirovanie_1.Translate
             }
             else
             {
+                _addToStack = false;
                 _stack.Add(number);
                 StackIndex = _stack.Count - 1;
             }

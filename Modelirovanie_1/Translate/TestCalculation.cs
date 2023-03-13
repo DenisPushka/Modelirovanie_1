@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Modelirovanie_1.Translate
 {
@@ -26,7 +27,7 @@ namespace Modelirovanie_1.Translate
         {
             var main = new TranslateToPostfix(new MainForm());
             var result = main.Translate("sin(cos(2+3/4))-5+6*(7*8-9)");
-            Assert.AreEqual(288, result.Result);
+            Assert.AreEqual(276.2018, result.Result);
         }
         
         [TestMethod]
@@ -44,22 +45,22 @@ namespace Modelirovanie_1.Translate
             var result = main.Translate("2+3^(4*2)");
             Assert.AreEqual(6563, result.Result);
         }
-        //
-        // [TestMethod]
-        // public void OperationHard()
-        // {
-        //     var main = new TranslateToPostfix(new MainForm());
-        //     var result = main.Translate("sin(cos(A+B/C))-D^(I/K)+E*(F*G-H)");
-        //     Assert.AreEqual("ABC/+баDIK/д-EFG*H-*+", result.Result);
-        // }
-        //
-        //  
-        // [TestMethod]
-        // public void Operation()
-        // {
-        //     var main = new TranslateToPostfix(new MainForm());
-        //     var result = main.Translate("A-cos(B)*D");
-        //     Assert.AreEqual("ABбD*-", result.Result);
-        // }
+        
+        [TestMethod]
+        public void OperationHard()
+        {
+            var main = new TranslateToPostfix(new MainForm());
+            var result = main.Translate("sin(cos(2+3/4))-5^(6/7)+8*(9*10-11)");
+            Assert.AreEqual(627.222, result.Result);
+        }
+        
+         
+        [TestMethod]
+        public void Operation()
+        {
+            var main = new TranslateToPostfix(new MainForm());
+            var result = main.Translate("2-cos(3)*4");
+            Assert.AreEqual(5.95997, result.Result);
+        }
     }
 }
