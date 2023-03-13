@@ -118,9 +118,16 @@ namespace Modelirovanie_1.Translate
             _mainForm.ShowStackTranslate(_stack, _stackIndex);
         }
 
+        private bool _isFirst;
         public async Task<double> Translate(string str)
         {
-            _workString = TranslateInputStrToWork(str);
+            if (!_isFirst)
+            {
+                _workString = TranslateInputStrToWork(str);
+                _mainForm.ShowDictionary(DictionaryNumber);
+                _isFirst = true;
+            }
+            
             if (Mode)
             {
                 Step();

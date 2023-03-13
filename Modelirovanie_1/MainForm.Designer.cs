@@ -46,12 +46,14 @@ namespace Modelirovanie_1
             this.label_input_change = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label_stack_Arithm = new System.Windows.Forms.Label();
+            this.label_dictionary = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // but_input
             // 
             this.but_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.but_input.Location = new System.Drawing.Point(1077, 27);
+            this.but_input.Location = new System.Drawing.Point(1530, 65);
             this.but_input.Name = "but_input";
             this.but_input.Size = new System.Drawing.Size(299, 86);
             this.but_input.TabIndex = 0;
@@ -62,7 +64,7 @@ namespace Modelirovanie_1
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(957, 125);
+            this.label1.Location = new System.Drawing.Point(1463, 154);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(419, 60);
             this.label1.TabIndex = 1;
@@ -72,9 +74,9 @@ namespace Modelirovanie_1
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(50, 9);
+            this.label2.Location = new System.Drawing.Point(1, -1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(517, 45);
+            this.label2.Size = new System.Drawing.Size(433, 45);
             this.label2.TabIndex = 2;
             this.label2.Text = "Выходная строка (в постфиксной форме)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,7 +85,7 @@ namespace Modelirovanie_1
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(50, 165);
+            this.label3.Location = new System.Drawing.Point(1, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 25);
             this.label3.TabIndex = 3;
@@ -94,7 +96,7 @@ namespace Modelirovanie_1
             // 
             this.label5.Enabled = false;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(50, 699);
+            this.label5.Location = new System.Drawing.Point(12, 771);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 23);
             this.label5.TabIndex = 5;
@@ -104,7 +106,7 @@ namespace Modelirovanie_1
             // radioButton1
             // 
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton1.Location = new System.Drawing.Point(50, 726);
+            this.radioButton1.Location = new System.Drawing.Point(12, 798);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(260, 24);
             this.radioButton1.TabIndex = 6;
@@ -116,7 +118,7 @@ namespace Modelirovanie_1
             // radioButton2
             // 
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton2.Location = new System.Drawing.Point(50, 753);
+            this.radioButton2.Location = new System.Drawing.Point(12, 825);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(260, 24);
             this.radioButton2.TabIndex = 7;
@@ -129,7 +131,7 @@ namespace Modelirovanie_1
             // 
             this.label_input.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_input.Location = new System.Drawing.Point(957, 185);
+            this.label_input.Location = new System.Drawing.Point(1463, 214);
             this.label_input.Name = "label_input";
             this.label_input.Size = new System.Drawing.Size(419, 57);
             this.label_input.TabIndex = 8;
@@ -140,15 +142,15 @@ namespace Modelirovanie_1
             // 
             this.label_postfix_symbol.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_postfix_symbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_postfix_symbol.Location = new System.Drawing.Point(50, 108);
+            this.label_postfix_symbol.Location = new System.Drawing.Point(1, 85);
             this.label_postfix_symbol.Name = "label_postfix_symbol";
-            this.label_postfix_symbol.Size = new System.Drawing.Size(343, 45);
+            this.label_postfix_symbol.Size = new System.Drawing.Size(401, 45);
             this.label_postfix_symbol.TabIndex = 9;
             // 
             // buttonTact
             // 
             this.buttonTact.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTact.Location = new System.Drawing.Point(985, 699);
+            this.buttonTact.Location = new System.Drawing.Point(1501, 861);
             this.buttonTact.Name = "buttonTact";
             this.buttonTact.Size = new System.Drawing.Size(150, 76);
             this.buttonTact.TabIndex = 10;
@@ -159,7 +161,7 @@ namespace Modelirovanie_1
             // button_start
             // 
             this.button_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_start.Location = new System.Drawing.Point(1226, 700);
+            this.button_start.Location = new System.Drawing.Point(1742, 862);
             this.button_start.Name = "button_start";
             this.button_start.Size = new System.Drawing.Size(150, 76);
             this.button_start.TabIndex = 11;
@@ -171,7 +173,7 @@ namespace Modelirovanie_1
             // 
             this.label_stack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_stack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_stack.Location = new System.Drawing.Point(50, 204);
+            this.label_stack.Location = new System.Drawing.Point(1, 155);
             this.label_stack.Name = "label_stack";
             this.label_stack.Size = new System.Drawing.Size(62, 478);
             this.label_stack.TabIndex = 13;
@@ -180,7 +182,7 @@ namespace Modelirovanie_1
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(957, 261);
+            this.label4.Location = new System.Drawing.Point(1463, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(419, 46);
             this.label4.TabIndex = 14;
@@ -190,7 +192,7 @@ namespace Modelirovanie_1
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(50, 67);
+            this.label6.Location = new System.Drawing.Point(1, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(343, 41);
             this.label6.TabIndex = 15;
@@ -201,7 +203,7 @@ namespace Modelirovanie_1
             // 
             this.label_input_change.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_input_change.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_input_change.Location = new System.Drawing.Point(957, 307);
+            this.label_input_change.Location = new System.Drawing.Point(1463, 336);
             this.label_input_change.Name = "label_input_change";
             this.label_input_change.Size = new System.Drawing.Size(419, 65);
             this.label_input_change.TabIndex = 18;
@@ -209,7 +211,7 @@ namespace Modelirovanie_1
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(382, 165);
+            this.label7.Location = new System.Drawing.Point(361, 175);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(412, 39);
             this.label7.TabIndex = 19;
@@ -220,17 +222,40 @@ namespace Modelirovanie_1
             // 
             this.label_stack_Arithm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_stack_Arithm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_stack_Arithm.Location = new System.Drawing.Point(170, 204);
+            this.label_stack_Arithm.Location = new System.Drawing.Point(124, 152);
             this.label_stack_Arithm.Name = "label_stack_Arithm";
-            this.label_stack_Arithm.Size = new System.Drawing.Size(156, 478);
+            this.label_stack_Arithm.Size = new System.Drawing.Size(138, 478);
             this.label_stack_Arithm.TabIndex = 20;
             this.label_stack_Arithm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label_dictionary
+            // 
+            this.label_dictionary.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label_dictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_dictionary.Location = new System.Drawing.Point(849, 152);
+            this.label_dictionary.Name = "label_dictionary";
+            this.label_dictionary.Size = new System.Drawing.Size(289, 495);
+            this.label_dictionary.TabIndex = 21;
+            this.label_dictionary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(849, 123);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(289, 28);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Обозначения чисел";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1425, 798);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label_dictionary);
             this.Controls.Add(this.label_stack_Arithm);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label_input_change);
@@ -248,13 +273,18 @@ namespace Modelirovanie_1
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.but_input);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "MainForm";
-            this.Text = "Мультимедийная обучающая программа \"Трансляция алгeбраических выражений\"";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label label_stack_Arithm;
+        private System.Windows.Forms.Label label8;
+
+        private System.Windows.Forms.Label label_dictionary;
+
+        public System.Windows.Forms.Label label_stack_Arithm;
 
         private System.Windows.Forms.Label label7;
 
