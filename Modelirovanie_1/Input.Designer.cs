@@ -104,7 +104,7 @@ namespace Modelirovanie
             this.char_C.Name = "char_C";
             this.char_C.Size = new System.Drawing.Size(120, 60);
             this.char_C.TabIndex = 6;
-            this.char_C.Text = "C";
+            this.char_C.Text = "3";
             this.char_C.UseVisualStyleBackColor = true;
             // 
             // char_F
@@ -114,7 +114,7 @@ namespace Modelirovanie
             this.char_F.Name = "char_F";
             this.char_F.Size = new System.Drawing.Size(120, 60);
             this.char_F.TabIndex = 9;
-            this.char_F.Text = "F";
+            this.char_F.Text = "6";
             this.char_F.UseVisualStyleBackColor = true;
             // 
             // char_K
@@ -124,7 +124,7 @@ namespace Modelirovanie
             this.char_K.Name = "char_K";
             this.char_K.Size = new System.Drawing.Size(120, 60);
             this.char_K.TabIndex = 12;
-            this.char_K.Text = "K";
+            this.char_K.Text = "9";
             this.char_K.UseVisualStyleBackColor = true;
             // 
             // char_L
@@ -134,7 +134,7 @@ namespace Modelirovanie
             this.char_L.Name = "char_L";
             this.char_L.Size = new System.Drawing.Size(120, 61);
             this.char_L.TabIndex = 14;
-            this.char_L.Text = "L";
+            this.char_L.Text = "0";
             this.char_L.UseVisualStyleBackColor = true;
             // 
             // number_RSk
@@ -274,7 +274,7 @@ namespace Modelirovanie
             this.char_A.Name = "char_A";
             this.char_A.Size = new System.Drawing.Size(120, 60);
             this.char_A.TabIndex = 4;
-            this.char_A.Text = "A";
+            this.char_A.Text = "1";
             this.char_A.UseVisualStyleBackColor = true;
             // 
             // char_B
@@ -284,7 +284,7 @@ namespace Modelirovanie
             this.char_B.Name = "char_B";
             this.char_B.Size = new System.Drawing.Size(120, 60);
             this.char_B.TabIndex = 5;
-            this.char_B.Text = "B";
+            this.char_B.Text = "2";
             this.char_B.UseVisualStyleBackColor = true;
             // 
             // char_D
@@ -294,7 +294,7 @@ namespace Modelirovanie
             this.char_D.Name = "char_D";
             this.char_D.Size = new System.Drawing.Size(120, 60);
             this.char_D.TabIndex = 7;
-            this.char_D.Text = "D";
+            this.char_D.Text = "4";
             this.char_D.UseVisualStyleBackColor = true;
             // 
             // char_E
@@ -304,7 +304,7 @@ namespace Modelirovanie
             this.char_E.Name = "char_E";
             this.char_E.Size = new System.Drawing.Size(120, 60);
             this.char_E.TabIndex = 8;
-            this.char_E.Text = "E";
+            this.char_E.Text = "5";
             this.char_E.UseVisualStyleBackColor = true;
             // 
             // char_G
@@ -314,7 +314,7 @@ namespace Modelirovanie
             this.char_G.Name = "char_G";
             this.char_G.Size = new System.Drawing.Size(120, 60);
             this.char_G.TabIndex = 10;
-            this.char_G.Text = "G";
+            this.char_G.Text = "7";
             this.char_G.UseVisualStyleBackColor = true;
             // 
             // char_H
@@ -324,7 +324,7 @@ namespace Modelirovanie
             this.char_H.Name = "char_H";
             this.char_H.Size = new System.Drawing.Size(120, 60);
             this.char_H.TabIndex = 11;
-            this.char_H.Text = "H";
+            this.char_H.Text = "8";
             this.char_H.UseVisualStyleBackColor = true;
             // 
             // number_LSk

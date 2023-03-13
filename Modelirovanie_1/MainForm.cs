@@ -13,7 +13,6 @@ namespace Modelirovanie_1
         private string _inputStr;
         private const string Str = "$+-*/^()FP";
         private readonly Label _indicator;
-
         private readonly byte[,] _arrayBytes =
         {
             { 4, 1, 1, 1, 1, 1, 1, 5, 1, 6 },
@@ -36,7 +35,7 @@ namespace Modelirovanie_1
             _translateToPostfix = new Translate.TranslateToPostfix(this);
             _indicator.Text = "←";
             _indicator.Size = new Size(250, 230);
-            _indicator.Location = new Point(165, 650);
+            _indicator.Location = new Point(125, 650);
             _indicator.Font = new Font("Microsoft Sans Serif", 20);
             Controls.Add(_indicator);
         }
@@ -112,7 +111,7 @@ namespace Modelirovanie_1
 
         private void button_to_input(object sender, EventArgs e) => label_input_main(sender, e);
 
-        public void ShowStack(List<char> stack, int index)
+        public void ShowStackTranslate(List<char> stack, int index)
         {
             if (stack.Count == 0) return;
             label_stack.Text = "";
@@ -120,15 +119,32 @@ namespace Modelirovanie_1
 
             for (var i = stack.Count - 1; i >= 0; i--)
             {
-                // index++;
                 var c = stack[i];
                 label_stack.Text += c + "\n";
             }
 
             if (index == -1) index = 0;
-            _indicator.Location = new Point(165, 620 - index * 40);
+            _indicator.Location = new Point(125, 620 - index * 40);
         }
 
+        public void ShowStackArithmetic(List<double> stack, int index)
+        {
+            if (stack.Count == 0) return;
+            label_stack_Arithm.Text = "";
+            label_stack_Arithm.Font = new Font("Microsoft Sans Serif", 20);
+
+            for (var i = stack.Count - 1; i >= 0; i--)
+            {
+                var c = stack[i];
+                c = Math.Round(c, 5);
+                label_stack_Arithm.Text += c + "\n";
+            }
+            
+            
+            if (index == -1) index = 0;
+            _indicator.Location = new Point(125, 620 - index * 40);
+        }
+        
         public void ShowPostfix(string str)
         {
             label_postfix_symbol.Text = str;

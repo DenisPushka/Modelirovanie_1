@@ -45,6 +45,7 @@ namespace Modelirovanie_1
             this.label6 = new System.Windows.Forms.Label();
             this.label_input_change = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label_stack_Arithm = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // but_input
@@ -80,10 +81,11 @@ namespace Modelirovanie_1
             // 
             // label3
             // 
+            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(50, 165);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(168, 39);
+            this.label3.Size = new System.Drawing.Size(60, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "Стек";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -169,7 +171,7 @@ namespace Modelirovanie_1
             // 
             this.label_stack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label_stack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_stack.Location = new System.Drawing.Point(100, 204);
+            this.label_stack.Location = new System.Drawing.Point(50, 204);
             this.label_stack.Name = "label_stack";
             this.label_stack.Size = new System.Drawing.Size(62, 478);
             this.label_stack.TabIndex = 13;
@@ -214,11 +216,22 @@ namespace Modelirovanie_1
             this.label7.Text = "Таблица принятий решений";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label_stack_Arithm
+            // 
+            this.label_stack_Arithm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label_stack_Arithm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label_stack_Arithm.Location = new System.Drawing.Point(170, 204);
+            this.label_stack_Arithm.Name = "label_stack_Arithm";
+            this.label_stack_Arithm.Size = new System.Drawing.Size(156, 478);
+            this.label_stack_Arithm.TabIndex = 20;
+            this.label_stack_Arithm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1425, 798);
+            this.Controls.Add(this.label_stack_Arithm);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label_input_change);
             this.Controls.Add(this.label6);
@@ -238,7 +251,10 @@ namespace Modelirovanie_1
             this.Name = "MainForm";
             this.Text = "Мультимедийная обучающая программа \"Трансляция алгeбраических выражений\"";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label_stack_Arithm;
 
         private System.Windows.Forms.Label label7;
 

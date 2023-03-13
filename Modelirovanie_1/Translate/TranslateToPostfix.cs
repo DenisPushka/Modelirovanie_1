@@ -115,7 +115,7 @@ namespace Modelirovanie_1.Translate
             // Выводы
             _mainForm.ShowPostfix(_resultString.ToString());
             _mainForm.ShowChangeInputStr(_index, _workString);
-            _mainForm.ShowStack(_stack, _stackIndex);
+            _mainForm.ShowStackTranslate(_stack, _stackIndex);
         }
 
         public async Task<double> Translate(string str)
@@ -134,8 +134,8 @@ namespace Modelirovanie_1.Translate
             }
 
             var result = await Task.FromResult(_resultString.ToString());
-            var calculation = new Calculation(result, DictionaryForFunction, DictionaryNumber);
-            return calculation.Start();
+            var calculation = new Calculation(result, DictionaryForFunction, DictionaryNumber, _mainForm);
+            return await calculation.Start();
         }
 
         private readonly Dictionary<char, int> _dictionaryColumn = new Dictionary<char, int>

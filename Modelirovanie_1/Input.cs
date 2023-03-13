@@ -42,9 +42,9 @@ namespace Modelirovanie
         {
             foreach (var item in groupBox.Controls)
             {
-                if (item is Button button) // проверяем, что это кнопка
+                if (item is Button button)
                 {
-                    button.Click += CommonBtn_Click; // устанавливаем обработчик события  
+                    button.Click += CommonBtn_Click;
                 }
             }
         }
