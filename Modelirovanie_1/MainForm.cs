@@ -26,14 +26,14 @@ namespace Modelirovanie_1
             { 2, 2, 2, 2, 2, 2, 1, 2, 5, 6 }
         };
 
-        private readonly Translate.Translate _translate;
+        private readonly Translate.TranslateToPostfix _translateToPostfix;
 
         public MainForm()
         {
             InitializeComponent();
             ShowTable();
             _indicator = new Label();
-            _translate = new Translate.Translate(this);
+            _translateToPostfix = new Translate.TranslateToPostfix(this);
             _indicator.Text = "←";
             _indicator.Size = new Size(250, 230);
             _indicator.Location = new Point(165, 650);
@@ -139,9 +139,9 @@ namespace Modelirovanie_1
             label_input_change.Text = "";
             for (var i = index; i < workStr.Length; i++)
             {
-                if (_translate.DictionaryForFunction.ContainsValue(workStr[i]))
+                if (_translateToPostfix.DictionaryForFunction.ContainsValue(workStr[i]))
                 {
-                    foreach (var c in _translate
+                    foreach (var c in _translateToPostfix
                                  .DictionaryForFunction
                                  .Where(c => c.Value == workStr[i]))
                         label_input_change.Text += c.Key;
@@ -153,13 +153,13 @@ namespace Modelirovanie_1
 
         private async void button_Start(object sender, EventArgs e)
         {
-            await _translate.TranslateToPostfix(_inputStr);
+            await _translateToPostfix.Translate(_inputStr);
         }
 
-        private void radioButton_Auto(object sender, EventArgs e) => _translate.Mode = false;
+        private void radioButton_Auto(object sender, EventArgs e) => _translateToPostfix.Mode = false;
 
-        private void radioButton_Step(object sender, EventArgs e) => _translate.Mode = true;
+        private void radioButton_Step(object sender, EventArgs e) => _translateToPostfix.Mode = true;
 
-        private async void button_Tact(object sender, EventArgs e) => await _translate.TranslateToPostfix(_inputStr);
+        private async void button_Tact(object sender, EventArgs e) => await _translateToPostfix.Translate(_inputStr);
     }
 }

@@ -96,8 +96,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="Translate\Translate.cs" />
+    <Compile Include="Translate\Calculation.cs" />
+    <Compile Include="Translate\TestCalculation.cs" />
+    <Compile Include="Translate\TestNotNumber.cs" />
+    <Compile Include="Translate\TranslateToPostfix.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

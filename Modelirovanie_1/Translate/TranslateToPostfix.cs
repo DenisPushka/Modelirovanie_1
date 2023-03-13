@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Modelirovanie_1.Translate
 {
-    public class Translate
+    public class TranslateToPostfix
     {
         public readonly Dictionary<string, char> DictionaryForFunction;
+        public readonly Dictionary<char, string> DictionaryNumber;
         private const int MilliSecond = 3000;
         private string _workString;
         private readonly MainForm _mainForm;
@@ -19,7 +21,7 @@ namespace Modelirovanie_1.Translate
         // Режим работы
         public bool Mode { get; set; }
 
-        public Translate(MainForm mainForm)
+        public TranslateToPostfix(MainForm mainForm)
         {
             _mainForm = mainForm;
             DictionaryForFunction = new Dictionary<string, char>
@@ -30,27 +32,28 @@ namespace Modelirovanie_1.Translate
                 { "arccos", 'г' },
                 { "^", 'д' }
             };
+            DictionaryNumber = new Dictionary<char, string>();
         }
 
         // Перевод формул в буквы
         private string TranslateInputStrToWork(string workString)
         {
-            // var ch = 'A';
+            var ch = 'A';
             var index = 0;
             var result = new StringBuilder();
 
             while (index != workString.Length)
             {
-                // if (char.IsDigit(workString[index]))
-                // {
-                //     var buffer = new StringBuilder().Append(workString[index]);
-                //     while (++index != workString.Length && char.IsDigit(workString[index]))
-                //         buffer.Append(workString[index]);
-                //     _dictionaryForNumber.Add(ch, buffer.ToString());
-                //     result.Append(ch);
-                //     ch++;
-                // }
-                // else 
+                if (char.IsDigit(workString[index]))
+                {
+                    var buffer = new StringBuilder().Append(workString[index]);
+                    while (++index != workString.Length && char.IsDigit(workString[index]))
+                        buffer.Append(workString[index]);
+                    DictionaryNumber.Add(ch, buffer.ToString());
+                    result.Append(ch);
+                    ch++;
+                }
+                else 
                 if (char.IsLower(workString[index]) || workString[index] == '^')
                 {
                     var c = ' ';
@@ -100,6 +103,7 @@ namespace Modelirovanie_1.Translate
 
         // Переменная для выхода
         private bool _exit;
+
         // Перевод из инфиксной формы в постфиксную
         private void Step()
         {
@@ -107,29 +111,31 @@ namespace Modelirovanie_1.Translate
 
             if (Operation(operation) && _index < _workString.Length)
                 _index++;
-            
+
             // Выводы
             _mainForm.ShowPostfix(_resultString.ToString());
             _mainForm.ShowChangeInputStr(_index, _workString);
             _mainForm.ShowStack(_stack, _stackIndex);
         }
 
-        public async Task<string> TranslateToPostfix(string str)
+        public async Task<double> Translate(string str)
         {
             _workString = TranslateInputStrToWork(str);
             if (Mode)
             {
                 Step();
-                return await Task.FromResult(_resultString.ToString());
+                // return await Task.FromResult(_resultString.ToString());
             }
-            
+
             while (!_exit && (_index < _workString.Length - 1 || _stackIndex != -2))
             {
                 Step();
-                await Task.Delay(MilliSecond);
+                // await Task.Delay(MilliSecond);
             }
-            
-            return await Task.FromResult(_resultString.ToString());
+
+            var result = await Task.FromResult(_resultString.ToString());
+            var calculation = new Calculation(result, DictionaryForFunction, DictionaryNumber);
+            return calculation.Start();
         }
 
         private readonly Dictionary<char, int> _dictionaryColumn = new Dictionary<char, int>
@@ -143,7 +149,7 @@ namespace Modelirovanie_1.Translate
             // Случий, для работы со стеком, после прохождения входной строки
             if (_workString.Length == _index)
                 return 0;
-            
+
             // для операции из словаря операций
             if (_dictionaryColumn.ContainsKey(_workString[_index]))
                 return _dictionaryColumn[_workString[_index]];
@@ -165,24 +171,28 @@ namespace Modelirovanie_1.Translate
 
         // Поле, показывающее, что можно увеличивать индекс для записи (по обновленному индексу будет использованная скобка)
         private bool _border;
+
         // Поле, показывающее, что нужно увеличить индекс, потому что последующие поля уже использованы, а текушее перезаписано и не использовано
         private bool _edit;
+
+        private bool _readFunc;
         private bool Operation(int operation)
         {
             switch (operation)
             {
                 // Добавление символа в стек
                 case 1:
-                    
+
                     // Проверка на изменение элемента внутри стека (перезапись)
                     if (_stackIndex + 1 < _stack.Count || _stackIndex == -1)
                     {
                         // Если элемент самый первый или верно одно из полей
-                        if (_stackIndex == -1 || _border || _edit)
+                        if (_stackIndex == -1 || _border || _edit || _readFunc)
                         {
                             _stackIndex++;
                             _edit = true;
                         }
+
                         _stack[_stackIndex] = _workString[_index];
                     }
                     else
@@ -191,15 +201,26 @@ namespace Modelirovanie_1.Translate
                         _stackIndex = _stack.Count - 1;
                         _edit = false;
                     }
-                    
+
                     _border = false;
+                    _readFunc = false;
                     break;
 
                 // Извлекаем символ из стека и отправляем его в выходную строку
                 case 2:
                     if (_stackIndex == -1) _stackIndex = 0;
                     _resultString.Append(_stack[_stackIndex]);
+
+                    if (_stack[_stackIndex] == '*' || _stack[_stackIndex] == '*')
+                        _readFunc = true;
+                    
+                    if (!_readFunc)
+                        foreach (var c in DictionaryForFunction
+                                     .Where(c => c.Value == _stack[_stackIndex]))
+                            _readFunc = true;
+
                     _stackIndex--;
+                    
                     _edit = false;
                     return false;
 
