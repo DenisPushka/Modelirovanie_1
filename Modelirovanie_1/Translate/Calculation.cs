@@ -72,6 +72,43 @@ namespace Modelirovanie_1.Translate
                     // Если вычисление функции, то берем только одно число 
                     if (_dictionaryForFunction.ContainsKey(operation) && operation != "^")
                     {
+                        // Проверка области определения для arcsin и arccos 
+                        if (operation.Equals("arcsin") || operation.Equals("arccos"))
+                        {
+                            if (p2 > 1)
+                                p2 = 1;
+                            else if (p2 < -1)
+                                p2 = -1;
+                        }
+
+                        // Проверка для синуса
+                        if (operation.Equals("sin"))
+                        {
+                            switch (p2)
+                            {
+                                case 0:
+                                    p2 = 0.000000000000000001;
+                                    break;
+                                case 1:
+                                    p2 = 0.999999999999999999;
+                                    break;
+                            }
+                        }
+                        
+                        // Проверка для косинуса 
+                        if (operation.Equals("cos"))
+                        {
+                            switch (p2)
+                            {
+                                case 1:
+                                    p2 = 0.000000000000000001;
+                                    break;
+                                case 0:
+                                    p2 = 0.999999999999999999;
+                                    break;
+                            }
+                        }
+                        
                         // Вычисление значения функции
                         result = Operators[operation](p2, 0);
                     }
@@ -100,7 +137,7 @@ namespace Modelirovanie_1.Translate
                 // Отображение арифметического стека
                 _mainForm.ShowStackArithmetic(_stack, StackIndex);
                 // Задержка
-                await Task.Delay(1500);
+                await Task.Delay(5000);
             }
 
             _mainForm.Result.Text = "Результат вычисления: " + _stack[StackIndex];
@@ -111,7 +148,7 @@ namespace Modelirovanie_1.Translate
         /// Метод, добавляющий элемент в стек
         /// </summary>
         /// <param name="number">Число</param>
-        /// <param name="calculation">Переменная, говорящая, вычесленно было число или пришло с постфиксной строки</param>
+        /// <param name="calculation">Переменная, говорящая, вычеслено было ли число или пришло с постфиксной строки</param>
         private void Add(double number, bool calculation)
         {
             // Если индекс находится в пределах границ стека (то есть не в начале и не в конце) или значение было вычеслено,

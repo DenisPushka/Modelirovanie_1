@@ -222,14 +222,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Modelirovanie_1.exe" size="39896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Modelirovanie_1.exe" size="40408">
       <assemblyIdentity name="Modelirovanie_1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OhrMzYgHmOegvPfkW8LTK5kkSQWivssxgmArpM7e94o=</dsig:DigestValue>
+        <dsig:DigestValue>ZzJH59g60z5g2EAaM5tauGnUq+8VoJ/YgKFZ9ULI4io=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

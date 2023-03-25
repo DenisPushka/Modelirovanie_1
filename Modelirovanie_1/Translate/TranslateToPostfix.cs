@@ -133,16 +133,22 @@ namespace Modelirovanie_1.Translate
                 Step();
                 // return await Task.FromResult(_resultString.ToString());
             }
-
-            while (!_exit && (_index < _workString.Length - 1 || _stackIndex != -2))
+            else
             {
-                Step();
-                // await Task.Delay(MilliSecond);
+                while (!_exit && (_index < _workString.Length - 1 || _stackIndex != -2))
+                {
+                    Step();
+                    await Task.Delay(MilliSecond);
+                }
             }
 
-            var result = await Task.FromResult(_resultString.ToString());
-            var calculation = new Calculation(result, DictionaryFunction, DictionaryNumber, _mainForm);
-            return await calculation.Start();
+            if (_exit)
+            {
+                var result = await Task.FromResult(_resultString.ToString());
+                var calculation = new Calculation(result, DictionaryFunction, DictionaryNumber, _mainForm);
+                return await calculation.Start();
+            }
+            return 0;
         }
 
         private readonly Dictionary<char, int> _dictionaryColumn = new Dictionary<char, int>
